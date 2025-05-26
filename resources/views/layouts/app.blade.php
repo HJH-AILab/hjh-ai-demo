@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('description', '天工AI')" />
-    <meta name="keywords" content="@yield('keywords', '天工AI')" />
+    <meta name="description" content="@yield('description', '好机绘 - 天工AI')" />
+    <meta name="keywords" content="@yield('keywords', '好机绘 - 天工AI')" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'hjh') - 天工AI</title>
+    <title>@yield('title', 'hjh') - 好机绘 - 天工AI</title>
     <!-- 样式 -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
