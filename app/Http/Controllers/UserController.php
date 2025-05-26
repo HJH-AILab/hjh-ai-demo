@@ -39,7 +39,6 @@ class UserController extends Controller
      */
     public function passwordrest(Request $request)
     {
-
         $request->validate($this->rules(), $this->validationErrorMessages());
         Auth::user()->password = bcrypt($request->get('password'));
         Auth::user()->save();
