@@ -21,7 +21,7 @@ class HjhController extends Controller
     public function __construct()
     {
         $this->middleware('auth', array(
-            'except' => ['callback']
+            'except' => ['callback', 'hjh-callback']
         ));
     }
 
