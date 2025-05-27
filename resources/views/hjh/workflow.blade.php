@@ -16,7 +16,7 @@
             <img src="{{ $workflow1['effect_thumbnail_image'] }}" data-src="{{ $workflow1['effect_thumbnail_image'] }}" class="img-fluid lazyload fit" alt="{{ $workflow1['name'] }}" title="{{ $workflow1['name'] }}"/>
             <div class="box-content">
                 <span class="down">
-                  <a onclick="create('{{ $workflow1[\'id\'] }}')"><i class="bi-heart-fill"></i></a>
+                  <a onclick="create({{ $workflow1['id'] }})"><i class="bi-heart-fill"></i></a>
                 </span>   
             </div>
           </div>
