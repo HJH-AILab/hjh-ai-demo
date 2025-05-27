@@ -11,8 +11,8 @@
             <div class="box">
               <img src="{{ $workflow1['effect_thumbnail_image'] }}" data-src="{{ $workflow1['effect_thumbnail_image'] }}" class="img-fluid lazyload fit" alt="{{ $workflow1['name'] }}" title="{{ $workflow1['name'] }}"/>
               <div class="box-content">
-                  <span class="down">
-                    <a class="btn btn-outline-success" href="{{ route('workflow.request') }}?workflow_id=({{ $workflow1['id'] }}" role="button">
+                  <span class="down" style="background-color: #f8f9fa;">
+                    <a class="btn btn-outline-success" href="{{ route('workflow.request') }}?workflow_id={{ $workflow1['id'] }}" role="button">
                         开始AI绘图<span class="bi-arrow-up"></span>
                     </a>
                   </span>
