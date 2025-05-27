@@ -8,7 +8,7 @@
                 <div class="card-header">工作流图片上传</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('image.update') }}" class="was-validated" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('workflow.create') }}" class="was-validated" enctype="multipart/form-data">
                         @csrf
                         @if(session('message'))
                             <div class="alert alert-info">{{ session('message') }}</div>
