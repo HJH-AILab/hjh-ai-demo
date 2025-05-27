@@ -9,14 +9,14 @@ use InvalidArgumentException;
 class HjhCloudService extends AbstractService {
     use Singleton;
 
-    public function create() {
+    public function create($image, $format, $workflowId, $createTaskNo = "") {
         try {
             $params = array(
                 "image" => $image,
-                "format" => 1,
+                "format" => $format,
                 "workflow_id" => $workflowId,
                 "create_task_no" => $createTaskNo,
-                "callback_url" => "",
+                "callback_url" => env("APP_URL") . "/api/hjh-callback",
             );
             $token = $this->getToken();
             $res = \App\Hjh\AI\Client::getCallbackHttp()->withHeaders([
