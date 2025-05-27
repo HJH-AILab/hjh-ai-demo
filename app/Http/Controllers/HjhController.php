@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\HjhCloudService;
+use App\Models\HjhImage;
 use Illuminate\Http\Request;
 use Auth;
-use App\Models\Image;
 use App\Models\Music;
 use Image as Intervention;
 use Storage;
@@ -63,7 +63,7 @@ class HjhController extends Controller
      */
     public function create(Request $request)
     {
-        $model = new Image();
+        $model = new HjhImage();
         if ($request->hasFile('thumb') && $request->file('thumb')->isValid()) {
 
             $file = $request->file('thumb');
