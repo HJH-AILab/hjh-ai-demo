@@ -11,6 +11,15 @@
     <title>@yield('title', 'hjh') - 好机绘 - 天工AI</title>
     <!-- 样式 -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?159461ab2c3180111a5d34d847aca402";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
 </head>
 <body>
     <div class="{{ route_class() }}-page">
