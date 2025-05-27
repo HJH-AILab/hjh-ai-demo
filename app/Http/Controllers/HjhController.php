@@ -43,6 +43,17 @@ class HjhController extends Controller
 
     /**
      * callback
+     * {
+	    "task_no": "20250527175912870966",
+        "data": {
+            "task_no": "",
+            "task_status": 1,
+            "images": [],
+            "source": [],
+            "faceswap": [],
+            "desc": "ok"
+        }
+    }
      * @return void
      */
     public function callback(Request $request)
