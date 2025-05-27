@@ -30,8 +30,8 @@ class HjhCloudService extends AbstractService {
                 throw new InvalidArgumentException($res["message"]);
             }
         } catch(Exception $e) {
-            Log::error("hjhcloud", $e);
-            Log::info("getWorkflows fail", $e->getMessage());
+            Log::error("hjhcloud", array($e->getMessage(), $e->getTraceAsString()));
+            Log::info("getWorkflows fail", array($e->getMessage(), $e->getTraceAsString()));
             return array();
         }
     }
@@ -65,8 +65,8 @@ class HjhCloudService extends AbstractService {
             }
             return $token;
         } catch(Exception $e) {
-            Log::error("hjhcloud", $e);
-            Log::error("getToken fail", $e->getMessage());
+            Log::error("hjhcloud", array($e->getMessage(), $e->getTraceAsString()));
+            Log::error("getToken fail", array($e->getMessage(), $e->getTraceAsString()));
             throw $e;
         }
     }
