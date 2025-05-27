@@ -30,6 +30,7 @@ Route::get('/profile/', 'UserController@showProfileForm')->name('profile.request
 Route::post('/profile/', 'UserController@profile')->name('profile.update');
 
 Route::get('/hjh-workflow/', 'HjhController@showWorkflowForm')->name('workflow.request');
+Route::post('/hjh-callback', 'HjhController@callback')->name('workflow.callback');
 
 Route::get('/image/', 'UserController@showImageForm')->name('image.request');
 

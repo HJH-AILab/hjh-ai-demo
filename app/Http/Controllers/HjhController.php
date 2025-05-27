@@ -20,10 +20,12 @@ class HjhController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', array(
+            'except' => ['callback']
+        ));
     }
 
-     /**
+    /**
      * showWorkflowForm
      * @return void
      */
@@ -37,6 +39,16 @@ class HjhController extends Controller
                 'workflows' => $workflows,
                 'title' => '好机绘工作流列表'
             ]);
+    }
+
+    /**
+     * callback
+     * @return void
+     */
+    public function callback(Request $request)
+    {
+        $data = $request->all();
+        return json_encode(['code' => 200, 'message' => 'success', 'data' => $data]);
     }
     
 }
