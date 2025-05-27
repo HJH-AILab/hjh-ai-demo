@@ -42,6 +42,22 @@ class HjhController extends Controller
     }
 
     /**
+     * 显示图片修改框
+     * @return void
+     */
+    public function showWorkflowImageForm(Request $request)
+    {
+        $data = $request->all();
+        $workflowId = $data['workflow_id'] ?? '';
+        $workflowName = $data['workflow_name'] ?? '';
+        return view('hjh.workflowimage', [
+                'workflow_id' => $workflowId,
+                'workflow_name' => $workflowName,
+                'title' => '好机绘工作流图片'
+            ]);
+    }
+
+    /**
      * callback
      * {
 	    "task_no": "20250527175912870966",
