@@ -6,21 +6,16 @@
       <div>
         <h3 class="text-center">{{ $workflow["name"] }}</h3>
         @foreach($workflow["workflows"] as $workflow1)
-          <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12 item">
-            <div class="card">
-              <img src="{{ $workflow1['effect_thumbnail_image'] }}" class="card-img-top" alt="{{ $workflow1['name'] }}">
-            </div>
-          </div>
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 item">
-          <div class="box">
-            <img src="{{ $workflow1['effect_thumbnail_image'] }}" data-src="{{ $workflow1['effect_thumbnail_image'] }}" class="img-fluid lazyload fit" alt="{{ $workflow1['name'] }}" title="{{ $workflow1['name'] }}"/>
-            <div class="box-content">
-                <span class="down">
-                  <a onclick="create({{ $workflow1['id'] }})"><i class="bi-heart-fill"></i></a>
-                </span>   
+            <div class="box">
+              <img src="{{ $workflow1['effect_thumbnail_image'] }}" data-src="{{ $workflow1['effect_thumbnail_image'] }}" class="img-fluid lazyload fit" alt="{{ $workflow1['name'] }}" title="{{ $workflow1['name'] }}"/>
+              <div class="box-content">
+                  <span class="down">
+                    <a onclick="create({{ $workflow1['id'] }})"><i class="bi-heart-fill"></i></a>
+                  </span>   
+              </div>
             </div>
           </div>
-        </div>
         @endforeach
       </div>
     @endforeach
