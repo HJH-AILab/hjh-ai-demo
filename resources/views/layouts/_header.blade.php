@@ -34,6 +34,11 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('image.play') }}"><strong>我为图片配音乐玩法说明</strong></a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('image.license') }}"><strong>版权说明</strong></a></li>
         <li class="nav-item">
+          <a class="btn btn-outline-success" href="{{ route('workflow.request') }}" role="button">
+              获取好机绘工作流<span class="bi-arrow-up"></span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="btn btn-outline-success" href="{{ route('image.request') }}" role="button">
               图片上传<span class="bi-arrow-up"></span>
           </a>

@@ -29,6 +29,8 @@ Route::get('/profile/', 'UserController@showProfileForm')->name('profile.request
 
 Route::post('/profile/', 'UserController@profile')->name('profile.update');
 
+Route::get('/hjh-workflow/', 'HjhController@showWorkflowForm')->name('workflow.request');
+
 Route::get('/image/', 'UserController@showImageForm')->name('image.request');
 
 Route::post('/image/', 'UserController@image')->name('image.update');
