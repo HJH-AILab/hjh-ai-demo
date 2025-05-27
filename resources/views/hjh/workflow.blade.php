@@ -4,6 +4,7 @@
 <div class="row masonry mt-1">
     @foreach($workflows as $workflow)
         <h3 class="text-center">{{ $workflow["name"] }}</h3>
+        <br />
         @foreach($workflow["workflows"] as $workflow1)
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 item">
             <div class="box">
