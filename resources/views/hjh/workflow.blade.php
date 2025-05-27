@@ -3,7 +3,7 @@
 @section('content')
 <div class="row masonry mt-1">
     @foreach($workflows as $workflow)
-        <div>
+        <div style="width: 100%">
           <h3 class="text-center">{{ $workflow["name"] }}</h3>  
         </div>
         @foreach($workflow["workflows"] as $workflow1)
