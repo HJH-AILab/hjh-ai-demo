@@ -47,6 +47,10 @@ class HjhCloudService extends AbstractService {
                     "client_id" => env("HJHCLOUD_CLIENT_ID"),
                     "client_secret" => env("HJHCLOUD_CLIENT_SECRET"),
                 );
+                Log::info("hjhcloud", array(
+                    "url" => $url,
+                    "params" => $params,
+                ));
                 $res = \App\Hjh\AI\Client::getCallbackHttp()
                     ->post($url, $params)->json();
                 Log::info("hjhcloud", array(
