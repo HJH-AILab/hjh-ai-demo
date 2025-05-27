@@ -46,7 +46,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-3">
                                 <label for="desc">图片说明</label>
-                                <input type="text" class="form-control" name="desc" placeholder="站在红色的花圃上的白色连衣裙的女人" autocomplete="off" required>
+                                <input type="text" value="好机绘 - {{ $workflow_id }} - {{ $workflow_name }}" class="form-control" name="desc" placeholder="站在红色的花圃上的白色连衣裙的女人" autocomplete="off" required>
                                 @error('desc')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
