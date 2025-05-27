@@ -9,6 +9,37 @@ use InvalidArgumentException;
 class HjhCloudService extends AbstractService {
     use Singleton;
 
+    public function create() {
+        try {
+            $params = array(
+                "image" => $image,
+                "format" => 1,
+                "workflow_id" => $workflowId,
+                "create_task_no" => $createTaskNo,
+                "callback_url" => "",
+            );
+            $token = $this->getToken();
+            $res = \App\Hjh\AI\Client::getCallbackHttp()->withHeaders([
+                'Authorization' => "Bearer $token",
+                ])
+                ->get(env("HJHCLOUD_URL") . "/api/openapi/task/create", $params)->json();
+            Log::info("hjhcloud", array(
+                "token" => $token,
+                "res" => $res,
+            ));
+            if($res && $res["code"] == 200) {
+                $list = $res["data"];
+                return $list;
+            } else {
+                throw new InvalidArgumentException($res["message"]);
+            }
+        } catch(Exception $e) {
+            Log::error("hjhcloud", array($e->getMessage(), $e->getTraceAsString()));
+            Log::info("getWorkflows fail", array($e->getMessage(), $e->getTraceAsString()));
+            return array();
+        }
+    }
+
     public function getWorkflows() {
         try {
             $params = array(

@@ -95,7 +95,7 @@ class UserController extends Controller
         return redirect()->back()->withMessage('更新成功');
     }
 
-     /**
+    /**
      * 显示图片修改框
      * @return void
      */
@@ -115,29 +115,28 @@ class UserController extends Controller
 
             $file = $request->file('thumb');
             $model->thumb = $file->store('thumbs');
-            $imageName = uniqid(date('YmdHis')).$file->getClientOriginalName();
+            $imageName = uniqid(date('YmdHis')) . $file->getClientOriginalName();
 
             //生成1920宽度图片
             $resource1920 = Intervention::make($file)->resize(1920, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->stream()->detach();
-            Storage::disk('local')->put('thumb1920/'.$imageName,$resource1920);
-            $model->thumb1920 = 'thumb1920/'.$imageName;
+            Storage::disk('local')->put('thumb1920/' . $imageName, $resource1920);
+            $model->thumb1920 = 'thumb1920/' . $imageName;
 
             //生成1280宽度图片
             $resource1280 = Intervention::make($file)->resize(1280, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->stream()->detach();
-            Storage::disk('local')->put('thumb1280/'.$imageName,$resource1280);
-            $model->thumb1280 = 'thumb1280/'.$imageName;
+            Storage::disk('local')->put('thumb1280/' . $imageName, $resource1280);
+            $model->thumb1280 = 'thumb1280/' . $imageName;
 
             //生成640宽度图片
             $resource640 = Intervention::make($file)->resize(640, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->stream()->detach();
-            Storage::disk('local')->put('thumb640/'.$imageName,$resource640);
-            $model->thumb640 = 'thumb640/'.$imageName;
-
+            Storage::disk('local')->put('thumb640/' . $imageName, $resource640);
+            $model->thumb640 = 'thumb640/' . $imageName;
         }
         $model->desc = $request->get('desc');
         $model->lens = $request->get('lens');
@@ -159,7 +158,8 @@ class UserController extends Controller
     public function showMusicForm(Request $request)
     {
         $image = Image::find($request->id);
-        return view('user.music',
+        return view(
+            'user.music',
             [
                 'image' => $image
             ]
@@ -194,52 +194,51 @@ class UserController extends Controller
 
     /**
      * 用户favorite功能
-     */ 
+     */
 
     public function favorite(Request $request)
     {
         $user = Auth::user();
         $post = Image::find($request->id);
-        if($user->hasFavorited($post)){
-            return json_encode(['msg'=>'hasFavorited']);
-        }else{
+        if ($user->hasFavorited($post)) {
+            return json_encode(['msg' => 'hasFavorited']);
+        } else {
             $user->favorite($post);
-            return json_encode(['msg'=>'success']);
+            return json_encode(['msg' => 'success']);
         }
     }
 
 
     /**
      * 用户取消favorite功能
-     */ 
+     */
 
     public function unfavorite(Request $request)
     {
         $user = Auth::user();
         $post = Image::find($request->id);
-        if($user->hasFavorited($post)){
+        if ($user->hasFavorited($post)) {
             $user->unfavorite($post);
-            return json_encode(['msg'=>'unFavorited']);
-        }else{
-            return json_encode(['msg'=>'unFavorite']);
+            return json_encode(['msg' => 'unFavorited']);
+        } else {
+            return json_encode(['msg' => 'unFavorite']);
         }
     }
 
     /**
      * 用户收藏的图片列表
-     */ 
+     */
 
     public function favorites()
     {
         $user = Auth::user();
         $favortePosts = $user->getFavoriteItems(Image::class)->simplePaginate(24);
-        return view('pages.favorite',
+        return view(
+            'pages.favorite',
             [
                 'images' => $favortePosts,
                 'title' => $user->name
             ]
         );
-
     }
-    
 }
