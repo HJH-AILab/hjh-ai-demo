@@ -46,21 +46,23 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * 获取用户图片
      */
-    public function images(){
+    public function images()
+    {
         return $this->hasMany('\App\Models\Image');
     }
 
-    public function musics(){
+    public function musics()
+    {
         return $this->hasMany('\App\Models\Music');
     }
 
     /**
-    * Send the password reset notification.
-    *
-    * @param  string $token
-    *
-    * @return void
-    */
+     * Send the password reset notification.
+     *
+     * @param  string $token
+     *
+     * @return void
+     */
     public function sendPasswordResetNotification($token)
     {
         dispatch(new SendResetPasswordEmail($this, $token));
@@ -68,13 +70,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * 设置头像地址
-     */ 
-    protected function getAvatarAttribute($value){
-        if($value==null){
+     */
+    protected function getAvatarAttribute($value)
+    {
+        if ($value == null) {
             return "https://tiangong2.wepromo.cn/avatars/default.jpg";
-        }else{
-            return "https://tiangong2.wepromo.cn/".$value;
+        } else {
+            return "https://tiangong2.wepromo.cn/" . $value;
         }
     }
-
 }

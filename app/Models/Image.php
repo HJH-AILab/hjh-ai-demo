@@ -9,9 +9,9 @@ use Laravel\Scout\Searchable;
 
 class Image extends Model
 {
-	use Searchable,Favoriteable;
+    use Searchable, Favoriteable;
 
-	/**
+    /**
      * 获取模型的索引名称.
      *
      * @return string
@@ -22,41 +22,45 @@ class Image extends Model
     }
 
     public function shouldBeSearchable()
-	{
-    	if($this->released) return true;
-    	return false;
-	}
+    {
+        if ($this->released) return true;
+        return false;
+    }
 
-	/**
-	 * Thumb字段访问器,防止后台修改原字段后台无法删除oss图片问题
-	 */ 
+    /**
+     * Thumb字段访问器,防止后台修改原字段后台无法删除oss图片问题
+     */
 
-	protected function getNewThumbAttribute(){
-		return "https://tiangong2.wepromo.cn/".$this->thumb;
-	}
+    protected function getNewThumbAttribute()
+    {
+        return "https://tiangong2.wepromo.cn/" . $this->thumb;
+    }
 
-	protected function getNewThumb1920Attribute(){
-		return "https://tiangong2.wepromo.cn/".$this->thumb1920;
-	}
+    protected function getNewThumb1920Attribute()
+    {
+        return "https://tiangong2.wepromo.cn/" . $this->thumb1920;
+    }
 
-	protected function getNewThumb1280Attribute(){
-		return "https://tiangong2.wepromo.cn/".$this->thumb1280;
-	}
+    protected function getNewThumb1280Attribute()
+    {
+        return "https://tiangong2.wepromo.cn/" . $this->thumb1280;
+    }
 
-	protected function getNewThumb640Attribute(){
-		return "https://tiangong2.wepromo.cn/".$this->thumb640;
-	}
+    protected function getNewThumb640Attribute()
+    {
+        return "https://tiangong2.wepromo.cn/" . $this->thumb640;
+    }
 
 
-	/**
-	 * 获取图片用户信息
-	 */ 
-	public function user()
-	{
-		return $this->belongsTo('\App\Models\User');
-	}
+    /**
+     * 获取图片用户信息
+     */
+    public function user()
+    {
+        return $this->belongsTo('\App\Models\User');
+    }
 
-	/**
+    /**
      * 只显示发布的图片
      */
     public function scopeReleased($query)
@@ -66,14 +70,14 @@ class Image extends Model
 
     /**
      * keywords访问器
-     */ 
+     */
     public function getKeywordsAttribute($value)
     {
         return explode(',', $value);
     }
     /**
      * keywords修改器
-     */ 
+     */
     // public function setKeywordsAttribute($value)
     // {
     //     $this->attributes['keywords'] = implode(',', $value);
@@ -81,7 +85,8 @@ class Image extends Model
     /**
      * 获取图片音乐
      */
-    public function musics(){
+    public function musics()
+    {
         return $this->hasMany('\App\Models\Music');
     }
 }
