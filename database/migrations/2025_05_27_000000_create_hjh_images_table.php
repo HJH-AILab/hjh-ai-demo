@@ -24,9 +24,9 @@ class CreateHjhImagesTable extends Migration
             $table->string('thumb')->nullable()->comment('缩略图');
             $table->string('desc')->comment('图片描述');
             $table->integer('released')->comment('发布状态')->defalut(0);
-            $table->string('thumb1920')->comment('1920缩略图');
-            $table->string('thumb1280')->comment('1280缩略图');
-            $table->string('thumb640')->comment('640缩略图');
+            $table->string('thumb1920')->comment('1920缩略图')->defalut("");
+            $table->string('thumb1280')->comment('1280缩略图')->defalut("");
+            $table->string('thumb640')->comment('640缩略图')->defalut("");
             $table->string('keywords')->nullable()->comment('标签');
             $table->string('views')->default(0)->comment('图片views');
             $table->string('downnums')->default(0)->comment('图片下载数量');
