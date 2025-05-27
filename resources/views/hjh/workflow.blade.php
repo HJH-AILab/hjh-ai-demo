@@ -4,11 +4,11 @@
 <div class="row masonry">
     @foreach($workflows as $workflow)
       <div>
-        <h3 class="text-center">{{ $workflow->name }}</h3>
-        @foreach($workflow->workflows as $workflow1)
+        <h3 class="text-center">{{ $workflow["name"] }}</h3>
+        @foreach($workflow["workflows"] as $workflow1)
           <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12 item">
             <div class="card">
-              <img src="{{ $workflow1->effect_thumbnail_image }}" class="card-img-top" alt="{{ $workflow1->name }}">
+              <img src="{{ $workflow1['effect_thumbnail_image'] }}" class="card-img-top" alt="{{ $workflow1['name'] }}">
             </div>
           </div>
         @endforeach
