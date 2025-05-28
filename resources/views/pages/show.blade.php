@@ -73,7 +73,7 @@
           <div class="social-share" data-sites="weibo,wechat,douban,qzone,qq" data-image="{{ $image->newthumb1280 }}"></div>
         </div>
         <div class="float-right">
-          @foreach($keywords as $keyword)
+          @foreach($image->keywords as $keyword)
             <a role="button" class="btn btn-outline-danger btn-sm" href="{{ route('image.tag', ['name'=>$keyword]) }}">{{ $keyword }}</a>
           @endforeach
           <a role="button" class="btn btn-warning btn-sm" href="{{ route('image.license') }}"><i class="bi-check-circle-fill"></i>&nbsp;免费使用</a>

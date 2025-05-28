@@ -131,6 +131,7 @@ class PagesController extends Controller
             $res = Image::findOrFail($id);
             Redis::setex($cacheKey, 3600 * mt_rand(1, 24), serialize($res));
         }
+        $res->keywords = explode(',', $res->keywords);
 
         $cacheUserKey = "images:morelist:" . $id;
         if (Redis::exists($cacheUserKey)) {
