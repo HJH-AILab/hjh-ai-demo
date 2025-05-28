@@ -18,13 +18,15 @@ class HjhCloudService extends AbstractService {
                 "create_task_no" => $createTaskNo,
                 "callback_url" => env("APP_URL") . "/api/hjh-callback",
             );
+            HjhTaskService::getInstance()->create($userId, $params);
+            Log::info("hjhcloud", $params);
             $token = $this->getToken();
             $res = \App\Hjh\AI\Client::getCallbackHttp()->withHeaders([
                 'Authorization' => "Bearer $token",
                 ])
-                ->get(env("HJHCLOUD_URL") . "/api/openapi/task/create", $params)->json();
+                ->post(env("HJHCLOUD_URL") . "/api/openapi/task/create", $params)->json();
             Log::info("hjhcloud", array(
-                "token" => $token,
+                "params" => $params,
                 "res" => $res,
             ));
             if($res && $res["code"] == 200) {
@@ -35,7 +37,7 @@ class HjhCloudService extends AbstractService {
             }
         } catch(Exception $e) {
             Log::error("hjhcloud", array($e->getMessage(), $e->getTraceAsString()));
-            Log::info("getWorkflows fail", array($e->getMessage(), $e->getTraceAsString()));
+            Log::info("create fail", array($e->getMessage(), $e->getTraceAsString()));
             return array();
         }
     }
