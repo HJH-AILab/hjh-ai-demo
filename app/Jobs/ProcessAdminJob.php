@@ -46,7 +46,7 @@ class ProcessAdminJob implements ShouldQueue
                 "data" => $this->data,
             ));
             if($this->action == "query_drawtask") {
-                $taskNo = g($this->data, "task_no", "");
+                $taskNo = $this->get($this->data, "task_no", "");
                 $drawTask = HjhDrawTask::where("task_no", $taskNo)->get()->first();
                 $ret = DrawTaskService::getInstance()->checkTask($drawTask);
             }
@@ -60,6 +60,10 @@ class ProcessAdminJob implements ShouldQueue
                 "trace" => $e->getTraceAsString(),
             ));
         }
+    }
+
+    public function get($arr, $key, $default = '') {
+        return isset($arr[$key]) ? $arr[$key] : $default;
     }
 
     /**
