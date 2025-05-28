@@ -9,10 +9,10 @@ use InvalidArgumentException;
 class HjhCloudService extends AbstractService {
     use Singleton;
 
-    public function create($userId, $image, $format, $workflowId, $workflowName, $createTaskNo = "") {
+    public function create($userId, $image, $imageUrl, $format, $workflowId, $workflowName, $createTaskNo = "") {
         try {
             $params = array(
-                "image" => $image,
+                "image_url" => $imageUrl,
                 "format" => $format,
                 "workflow_id" => $workflowId,
                 "workflow_name" => $workflowName,
