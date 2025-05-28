@@ -15,6 +15,7 @@ class HjhCloudService extends AbstractService {
                 "image" => $image,
                 "format" => $format,
                 "workflow_id" => $workflowId,
+                "workflow_name" => $workflowName,
                 "create_task_no" => $createTaskNo,
                 "callback_url" => env("APP_URL") . "/api/hjh-callback",
             );
