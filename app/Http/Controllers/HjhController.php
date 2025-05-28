@@ -73,7 +73,7 @@ class HjhController extends Controller
             $model->thumb = $file->store('thumbs');
             $imageName = uniqid(date('YmdHis')) . $file->getClientOriginalName();
 
-            $createTaskNo = uniqid(date('YmdHis'));
+            $createTaskNo = $userId . date('YmdHis') . mt_rand(1000000, 9999999);
             HjhCloudService::getInstance()->create(
                 $userId,
                 $file,
@@ -81,6 +81,7 @@ class HjhController extends Controller
                 Base::FORMAT_SQURE,
                 $request->get('workflow_id'),
                 $request->get('workflow_name'),
+                $createTaskNo
             );
             //生成1920宽度图片
             $resource1920 = Intervention::make($file)->resize(1920, null, function ($constraint) {
