@@ -20,6 +20,8 @@ class HjhCloudService extends AbstractService {
                 "callback_url" => env("APP_URL") . "/api/hjh-callback",
             );
             HjhTaskService::getInstance()->create($userId, $params);
+            $base64 = HjhImageService::getImageBase64($image);
+            $params["image"] = $base64;
             Log::info("hjhcloud", $params);
             $token = $this->getToken();
             $res = \App\Hjh\AI\Client::getCallbackHttp()->withHeaders([
