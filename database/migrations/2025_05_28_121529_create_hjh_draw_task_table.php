@@ -25,7 +25,7 @@ class CreateHjhImagesTable extends Migration
             $table->json('user_parameter')->nullable()->comment('用户参数');
             $table->json('result_detail')->nullable()->comment('结果详情');
             $table->string('images', 1024)->comment('结果图片')->default('');
-            $table->integer('task_status')->comment('状态 1:创建,2:执行中,3:执行完成,10:执行失败')->default(0);
+            $table->integer('task_status')->comment('任务状态 1:创建,2:执行中,3:执行完成,10:执行失败')->default(0);
             $table->string('task_desc')->comment('任务描述')->default('');
             $table->integer('add_time')->comment('创建任务时间')->default(0);
             $table->integer('start_time')->comment('开始时间')->default(0);
