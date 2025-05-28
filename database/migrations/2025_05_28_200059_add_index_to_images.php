@@ -18,6 +18,7 @@ class AddIndexToImages extends Migration
             $table->index(array('workflow_id'), 'idx_workflow_id');
             $table->index(array('user_id'), 'idx_user_id');
             $table->index(array('desc'), 'idx_desc');
+            $table->index(array('keywords'), 'idx_keywords');
         });
     }
 
@@ -33,6 +34,7 @@ class AddIndexToImages extends Migration
             $table->dropIndex('idx_workflow_id');
             $table->dropIndex('idx_user_id');
             $table->dropIndex('idx_desc');
+            $table->dropIndex('idx_keywords');
         });
     }
 }
