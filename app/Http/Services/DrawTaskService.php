@@ -2,13 +2,14 @@
 namespace App\Http\Services;
 
 use App\Jobs\Hjh\Wsc as HjhWsc;
+use App\Models\HjhDrawTask;
 use Illuminate\Support\Facades\Log;
 
 class DrawTaskService extends AbstractService {
     use Singleton;
 
     public function getDrawTaskByTaskNo($taskNo) {
-        $drawtask = \App\Models\DrawTask::where("task_no", $taskNo)->first();
+        $drawtask = HjhDrawTask::where("task_no", $taskNo)->first();
         if ($drawtask) {
             Log::info("DrawTaskService getDrawTaskByTaskNo", array("drawtask" => $drawtask->toArray()));
         } else {
