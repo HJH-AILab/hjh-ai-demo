@@ -4,8 +4,11 @@ namespace App\Jobs\Hjh;
 use App\Hjh\AI\Client;
 use App\Http\Services\Draw\Task;
 use App\Http\Services\HjhCloudService;
+use App\Models\Image;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Intervention;
+use Illuminate\Support\Facades\Storage;
 
 class Wsc extends Base {
     use Singleton;
@@ -110,8 +113,50 @@ class Wsc extends Base {
                 if(!empty($images)) {
                     $drawtask->images = implode(",", $images);
 
-                    $drawtask->task_status = Task::TASK_STATUS_FINISH;
-                    $drawtask->save();
+                    $model = new Image();
+                    foreach ($images as $image) {
+                        $userId = $drawtask->user_id;
+                        $file = file_get_contents($image);
+                        $imageName = uniqid(date('YmdHis')) . "hjhai";
+                        Storage::disk('local')->put('thumbs/' . $imageName, $file);
+                        $model->thumb = 'thumbs/' . $imageName;
+
+                        //生成1920宽度图片
+                        $resource1920 = Intervention::make($file)->resize(1920, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->stream()->detach();
+                        Storage::disk('local')->put('thumb1920/' . $imageName, $resource1920);
+                        $model->thumb1920 = 'thumb1920/' . $imageName;
+
+                        //生成1280宽度图片
+                        $resource1280 = Intervention::make($file)->resize(1280, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->stream()->detach();
+                        Storage::disk('local')->put('thumb1280/' . $imageName, $resource1280);
+                        $model->thumb1280 = 'thumb1280/' . $imageName;
+
+                        //生成640宽度图片
+                        $resource640 = Intervention::make($file)->resize(640, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->stream()->detach();
+                        Storage::disk('local')->put('thumb640/' . $imageName, $resource640);
+                        $model->thumb640 = 'thumb640/' . $imageName;
+                        $model->desc = "好机绘AI绘图 - " . $drawtask->workflow_name;
+                        $model->lens = "";
+                        $model->size = "";
+                        $model->resolution = "";
+                        $model->aspect_ratio = "";
+                        $model->keywords = "";
+                        $model->released = 0;
+                        $model->user_id = $userId;
+                        $model->source = Task::SOURCE_HJH; // 来源 1-好机绘
+                        $model->workflow_id = $drawtask->workflow_id;
+                        $model->workflow_name = $drawtask->workflow_name;
+                        $model->save();
+
+                        $drawtask->task_status = Task::TASK_STATUS_FINISH;
+                        $drawtask->save();
+                    }
                 } else {
                     $drawtask->task_status = Task::TASK_STATUS_FAIL;
                 }
