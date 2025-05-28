@@ -7,6 +7,16 @@ use Illuminate\Support\Facades\Log;
 class DrawTaskService extends AbstractService {
     use Singleton;
 
+    public function getDrawTaskByTaskNo($taskNo) {
+        $drawtask = \App\Models\DrawTask::where("task_no", $taskNo)->first();
+        if ($drawtask) {
+            Log::info("DrawTaskService getDrawTaskByTaskNo", array("drawtask" => $drawtask->toArray()));
+        } else {
+            Log::error("DrawTaskService getDrawTaskByTaskNo", array("message" => "Draw task not found"));
+        }
+        return $drawtask;
+    }
+
     public function checkTask($drawtask)
     {
         try {

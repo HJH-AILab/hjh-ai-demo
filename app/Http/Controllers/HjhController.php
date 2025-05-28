@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\Draw\Base;
 use App\Http\Services\Draw\Task;
+use App\Http\Services\DrawTaskService;
 use App\Http\Services\HjhCloudService;
 use App\Models\HjhImage;
 use Illuminate\Http\Request;
@@ -163,7 +164,18 @@ class HjhController extends Controller
     public function callback(Request $request)
     {
         $data = $request->all();
-        return json_encode(['code' => 200, 'message' => 'success', 'data' => $data]);
+        $taskNo = $data['task_no'] ?? '';
+        if(empty($taskNo)) {
+            return json_encode(['code' => 400, 'message' => 'task_no is required']);
+        }
+        $callbackData = $data['data'] ?? [];
+        if(empty($callbackData)) {
+            return json_encode(['code' => 400, 'message' => 'data is required']);
+        }
+        $drawTask = DrawTaskService::getInstance()->getDrawTaskByTaskNo($taskNo);
+
+        $ret = DrawTaskService::getInstance()->callback($drawTask, $callbackData);
+        return json_encode(['code' => 200, 'message' => 'success', 'data' => $ret]);
     }
     
 }
