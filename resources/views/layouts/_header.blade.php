@@ -23,7 +23,7 @@
       </ul>
 
       <ul class="navbar-nav">
-        <li><a class="nav-link" href="{{ route('root') }}">好机绘AI画廊</a></li>
+        <li><a class="nav-link" href="{{ route('hjh.image') }}">好机绘AI画廊</a></li>
         <li><a class="nav-link" href="{{ route('list') }}">音图话</a></li>
         <li><a class="nav-link" href="{{ route('root') }}">超清大图</a></li>
       </ul>
