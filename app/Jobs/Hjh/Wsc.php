@@ -115,11 +115,18 @@ class Wsc extends Base {
 
                     $model = new Image();
                     foreach ($images as $image) {
+                        $model = new Image();
+                        Log::info("DrawTask", array(
+                            "image" => $image,
+                        ));
                         $userId = $drawtask->user_id;
                         $file = file_get_contents($image);
                         $imageName = uniqid(date('YmdHis')) . "hjhai";
                         Storage::disk('local')->put('thumbs/' . $imageName, $file);
                         $model->thumb = 'thumbs/' . $imageName;
+                        Log::info("DrawTask", array(
+                            "thumb" => $model->thumb,
+                        ));
 
                         //生成1920宽度图片
                         $resource1920 = Intervention::make($file)->resize(1920, null, function ($constraint) {
