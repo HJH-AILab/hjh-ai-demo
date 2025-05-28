@@ -118,7 +118,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-3">
                                 <button type="submit" class="btn btn-primary">
-                                    上传
+                                    开始AI绘图
                                 </button>
                             </div>
                         </div>
