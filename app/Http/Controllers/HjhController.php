@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\Draw\Base;
+use App\Http\Services\Draw\Task;
 use App\Http\Services\HjhCloudService;
 use App\Models\HjhImage;
 use Illuminate\Http\Request;
@@ -57,6 +58,30 @@ class HjhController extends Controller
                 'workflow_name' => $workflowName,
                 'title' => '好机绘工作流图片'
             ]);
+    }
+
+    /**
+     * 图片列表页展示
+     * 
+     */
+    public function image()
+    {
+        $page = request('page');
+        if (!$page) {
+            $page = 1;
+        }
+        
+        $res = Image::orderBy('id', 'desc')
+            ->where('source', Task::SOURCE_HJH)
+            ->Released()->simplePaginate(24, ['*'], 'page', $page);
+        
+        return view(
+            'hjh.image',
+            [
+                'images' => $res,
+                'title' => '好机绘AI画廊'
+            ]
+        );
     }
 
     /**
