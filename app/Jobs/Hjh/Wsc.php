@@ -153,10 +153,10 @@ class Wsc extends Base {
                         $model->workflow_id = $drawtask->workflow_id;
                         $model->workflow_name = $drawtask->workflow_name;
                         $model->save();
-
-                        $drawtask->task_status = Task::TASK_STATUS_FINISH;
-                        $drawtask->save();
                     }
+
+                    $drawtask->task_status = Task::TASK_STATUS_FINISH;
+                    $drawtask->save();
                 } else {
                     $drawtask->task_status = Task::TASK_STATUS_FAIL;
                 }
