@@ -106,7 +106,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-3">
                                 <label for="keywords">标签</label>
-                                <input type="text" class="form-control" name="keywords" placeholder="多个标签请用英文,分割 如女人,帽子,唯美" autocomplete="off">
+                                <input type="text" value="hjh,ai" class="form-control" name="keywords" placeholder="多个标签请用英文,分割 如女人,帽子,唯美" autocomplete="off">
                                 @error('keywords')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

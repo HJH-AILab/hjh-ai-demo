@@ -218,7 +218,6 @@ class PagesController extends Controller
      */
     public function tag($name)
     {
-
         $res = Image::where('keywords', 'like', "%$name%")->orderBy('created_at', 'desc')->Released()->simplePaginate(24);
         return view(
             'pages.tag',
