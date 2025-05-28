@@ -24,6 +24,12 @@ class Base extends AbstractService {
     const SOURCE_DEFAULT = 0;
     const SOURCE_HJH = 1;
 
+    // 1:方,2:竖,3:横
+    const FORMAT_UNKOWN = 0;
+    const FORMAT_SQURE = 1;
+    const FORMAT_PORTRAIT = 2;
+    const FORMAT_LANDSCAPE = 3;
+
     public static $_ST = array(
         self::ST_OFF => "禁用",
         self::ST_ON => "启用",
@@ -37,5 +43,12 @@ class Base extends AbstractService {
     public static $_SOURCE = array(
         self::SOURCE_DEFAULT => "默认",
         self::SOURCE_HJH => "好机绘",
+    );
+
+    public static $_FORMAT = array(
+        self::FORMAT_UNKOWN => "未知",
+        self::FORMAT_SQURE => "方",
+        self::FORMAT_PORTRAIT => "竖",
+        self::FORMAT_LANDSCAPE => "横",
     );
 }

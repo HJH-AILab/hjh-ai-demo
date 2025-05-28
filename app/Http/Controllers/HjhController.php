@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\Draw\Base;
 use App\Http\Services\HjhCloudService;
 use App\Models\HjhImage;
 use Illuminate\Http\Request;
@@ -65,12 +66,22 @@ class HjhController extends Controller
     public function create(Request $request)
     {
         $model = new Image();
+        $userId = Auth::user()->id;
         if ($request->hasFile('thumb') && $request->file('thumb')->isValid()) {
 
             $file = $request->file('thumb');
             $model->thumb = $file->store('thumbs');
             $imageName = uniqid(date('YmdHis')) . $file->getClientOriginalName();
 
+            $createTaskNo = uniqid(date('YmdHis'));
+            HjhCloudService::getInstance()->create(
+                $userId,
+                $file,
+                $model->thumb,
+                Base::FORMAT_SQURE,
+                $request->get('workflow_id'),
+                $request->get('workflow_name'),
+            );
             //生成1920宽度图片
             $resource1920 = Intervention::make($file)->resize(1920, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -99,7 +110,10 @@ class HjhController extends Controller
         $model->aspect_ratio = $request->get('aspect_ratio');
         $model->keywords = $request->get('keywords');
         $model->released = 0;
-        $model->user_id = Auth::user()->id;
+        $model->user_id = $userId;
+        $model->source = Base::SOURCE_HJH; // 来源 1-好机绘
+        $model->workflow_id = $request->get('workflow_id', 0);
+        $model->workflow_name = $request->get('workflow_name', '');
         $model->save();
 
         return redirect()->back()->withMessage('图片上传成功,审核通过后展示');
