@@ -27,6 +27,7 @@ class HjhTaskService extends AbstractService {
             'task_status' => Task::TASK_STATUS_CREATE, // 1:创建
             'task_desc' => $this->get($params, 'task_desc', ''),
             'add_time' => Carbon::now()->timestamp,
+            'start_time' => time(),
             'status' => Task::ST_OK,
             'created_at' => Carbon::now(),
         ];

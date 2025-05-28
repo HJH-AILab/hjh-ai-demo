@@ -167,6 +167,6 @@ class Wsc extends Base {
             $drawtask->task_status = Task::TASK_STATUS_FAIL;
         }
 
-        $drawtask->end_time = getMillisecond();
+        $drawtask->end_time = time();
     }
 }
