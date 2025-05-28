@@ -7,7 +7,7 @@ use App\Http\Services\HjhCloudService;
 use App\Models\Image;
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Intervention;
+use Image as Intervention;
 use Illuminate\Support\Facades\Storage;
 
 class Wsc extends Base {
