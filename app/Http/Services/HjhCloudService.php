@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Services;
 
+use App\Jobs\ProcessAdminJob;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -33,6 +34,16 @@ class HjhCloudService extends AbstractService {
                 "res" => $res,
             ));
             if($res && $res["code"] == 200) {
+                $common = [
+                    "action" => "query_drawtask",
+                    "data" => array(
+                        "task_no" => $createTaskNo,
+                    ),
+                ];
+                // 三分钟
+                ProcessAdminJob::dispatch($common)
+                    ->onQueue('admin')
+                    ->delay(180);
                 $list = $res["data"];
                 return $list;
             } else {
@@ -41,6 +52,57 @@ class HjhCloudService extends AbstractService {
         } catch(Exception $e) {
             Log::error("hjhcloud", array($e->getMessage(), $e->getTraceAsString()));
             Log::info("create fail", array($e->getMessage(), $e->getTraceAsString()));
+            return array();
+        }
+    }
+
+    /**
+     * "data": {
+		"task_no": "1_1202505281502238471504",
+		"task_status": 3,
+		"images": [
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00001_faceswap_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00002_faceswap_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00003_faceswap_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00004_faceswap_.webp"
+		],
+		"source": [
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00001_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00002_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00003_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00004_.webp"
+		],
+		"faceswap": [
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00001_faceswap_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00002_faceswap_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00003_faceswap_.webp",
+			"https://ai.wepromo.cn/images/openapi_img/tmp/2025/05/28/1_0_70_00004_faceswap_.webp"
+		]
+	}
+     */
+    public function query($taskNo, $isReturnImage = 1) {
+        try {
+            $params = array(
+                "task_no" => $taskNo,
+                "is_return_image" => $isReturnImage,
+            );
+            $token = $this->getToken();
+            $res = \App\Hjh\AI\Client::getCallbackHttp()->withHeaders([
+                'Authorization' => "Bearer $token",
+                ])
+                ->get(env("HJHCLOUD_URL") . "/api/openapi/task/query", $params)->json();
+            Log::info("hjhcloud", array(
+                "token" => $token,
+                "res" => $res,
+            ));
+            if($res) {
+                return $res;
+            } else {
+                throw new InvalidArgumentException("no res");
+            }
+        } catch(Exception $e) {
+            Log::error("hjhcloud", array($e->getMessage(), $e->getTraceAsString()));
+            Log::info("query fail", array($e->getMessage(), $e->getTraceAsString()));
             return array();
         }
     }
