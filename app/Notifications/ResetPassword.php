@@ -42,10 +42,10 @@ class ResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('重置密码')
-                    ->line('您收到此电子邮件是因为我们收到了您帐户的密码重置请求.')
-                    ->action('重置密码', url('password/reset',$this->token))
-                    ->line('如果您未注册帐号,请忽略此邮件.');
+            ->subject('重置密码')
+            ->line('您收到此电子邮件是因为我们收到了您帐户的密码重置请求.')
+            ->action('重置密码', url('password/reset', $this->token))
+            ->line('如果您未注册帐号,请忽略此邮件.');
     }
 
     /**
