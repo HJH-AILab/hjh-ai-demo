@@ -143,6 +143,7 @@ class Wsc extends Base {
                         // 三分钟
                         ProcessAdminJob::dispatch($common)
                             ->onQueue('admin');
+                        Log::info("DrawTask", $common);
                     } else {
                         $this->processImg($drawtask);
                     }
