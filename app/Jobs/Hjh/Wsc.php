@@ -153,7 +153,7 @@ class Wsc extends Base {
                         $model->size = "";
                         $model->resolution = "";
                         $model->aspect_ratio = "";
-                        $model->keywords = "hjh,ai";
+                        $model->keywords = "hjh,image";
                         $model->released = 1;
                         $model->user_id = $userId;
                         $model->source = Task::SOURCE_HJH; // 来源 1-好机绘
