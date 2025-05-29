@@ -5,6 +5,7 @@ use App\Hjh\AI\Client;
 use App\Http\Services\Draw\Images;
 use App\Http\Services\Draw\Task;
 use App\Http\Services\HjhCloudService;
+use App\Jobs\ProcessAdminJob;
 use App\Models\Image;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -131,6 +132,16 @@ class Wsc extends Base {
 
                     $drawtask->task_status = Task::TASK_STATUS_FINISH;
                     $drawtask->save();
+
+                    $common = [
+                        "action" => "callback_drawtask",
+                        "data" => array(
+                            "task_no" => $drawtask->task_no,
+                        ),
+                    ];
+                    // 三分钟
+                    ProcessAdminJob::dispatch($common)
+                        ->onQueue('admin');
                 } else {
                     $drawtask->task_status = Task::TASK_STATUS_FAIL;
                 }
