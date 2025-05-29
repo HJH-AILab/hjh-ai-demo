@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\Draw\Base;
+use App\Http\Services\Draw\Images;
 use App\Http\Services\Draw\Task;
 use App\Http\Services\DrawTaskService;
 use App\Http\Services\HjhCloudService;
@@ -138,6 +139,7 @@ class HjhController extends Controller
         $model->keywords = $request->get('keywords');
         $model->released = 0;
         $model->user_id = $userId;
+        $model->type = Images::TYPE_USER; // 用户上传
         $model->source = Base::SOURCE_HJH; // 来源 1-好机绘
         $model->workflow_id = $request->get('workflow_id', 0);
         $model->workflow_name = $request->get('workflow_name', '');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\Draw\Images;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Image;
@@ -145,6 +146,7 @@ class UserController extends Controller
         $model->aspect_ratio = $request->get('aspect_ratio');
         $model->keywords = $request->get('keywords');
         $model->released = 0;
+        $model->type = Images::TYPE_USER;
         $model->user_id = Auth::user()->id;
         $model->save();
 

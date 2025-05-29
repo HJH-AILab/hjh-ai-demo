@@ -2,6 +2,7 @@
 namespace App\Jobs\Hjh;
 
 use App\Hjh\AI\Client;
+use App\Http\Services\Draw\Images;
 use App\Http\Services\Draw\Task;
 use App\Http\Services\HjhCloudService;
 use App\Models\Image;
@@ -156,6 +157,7 @@ class Wsc extends Base {
                         $model->keywords = "hjh,image,aigc";
                         $model->released = 1;
                         $model->user_id = $userId;
+                        $model->type = Images::TYPE_AIGC; // AI生成
                         $model->source = Task::SOURCE_HJH; // 来源 1-好机绘
                         $model->workflow_id = $drawtask->workflow_id;
                         $model->workflow_name = $drawtask->workflow_name;
