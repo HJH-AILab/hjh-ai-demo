@@ -72,4 +72,30 @@ class DrawTaskService extends AbstractService {
             ));
         }
     }
+
+    public function callbackImg($drawtask)
+    {
+        try {
+            if ($drawtask) {
+                Log::info("DrawTaskCallback", array("drawtask" => $drawtask->toArray()));
+
+                HjhWsc::getInstance()->callbackImg($drawtask);
+                
+                $ret = array(
+                    "status" => $drawtask->task_status
+                );
+            } else {
+                $ret = array(
+                    "status" => $drawtask->task_status
+                );
+                Log::error("DrawTaskCallback", array("drawtask is processed"));
+            }
+            return $ret;
+        } catch (\Exception $e) {
+            Log::error("DrawTaskCallback", array(
+                "message" => $e->getMessage(),
+                "trace" => $e->getTraceAsString(),
+            ));
+        }
+    }
 }

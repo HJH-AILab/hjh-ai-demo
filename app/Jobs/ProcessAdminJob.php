@@ -49,6 +49,10 @@ class ProcessAdminJob implements ShouldQueue
                 $taskNo = $this->get($this->data, "task_no", "");
                 $drawTask = HjhDrawTask::where("task_no", $taskNo)->get()->first();
                 $ret = DrawTaskService::getInstance()->checkTask($drawTask);
+            } elseif($this->action == "callback_drawtask") {
+                $taskNo = $this->get($this->data, "task_no", "");
+                $drawTask = HjhDrawTask::where("task_no", $taskNo)->get()->first();
+                $ret = DrawTaskService::getInstance()->callbackImg($drawTask);
             }
         } catch (\Exception $e) {
             Log::error("ProcessAdminJob", array(
