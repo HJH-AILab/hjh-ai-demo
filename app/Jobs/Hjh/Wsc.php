@@ -34,7 +34,7 @@ class Wsc extends Base {
                 if($data) {
                     $resultDetail["query_output"] = $data;
                     $drawtask->result_detail = json_encode($resultDetail);
-                    $this->processData($drawtask, $data);
+                    $this->processData($drawtask, $data, "checkTask");
                 } else {
                     $drawtask->task_status = Task::TASK_STATUS_FAIL;
                 }
@@ -75,7 +75,7 @@ class Wsc extends Base {
             if($drawtask->task_status == Task::TASK_STATUS_FINISH) {
 
             } else {
-                $this->processData($drawtask, $data);
+                $this->processData($drawtask, $data, "callback");
             }
             
             $resultDetail = json_decode($drawtask->result_detail, true);
@@ -123,7 +123,7 @@ class Wsc extends Base {
         }
     }
 
-    public function processData($drawtask, $data) {
+    public function processData($drawtask, $data, $type = "checkTask") {
         if($data["code"] == 200) {
             if($data["data"]["task_status"] == Task::TASK_STATUS_FINISH) {
                 $images = $data["data"]["images"];
@@ -133,15 +133,19 @@ class Wsc extends Base {
                     $drawtask->task_status = Task::TASK_STATUS_FINISH;
                     $drawtask->save();
 
-                    $common = [
-                        "action" => "callback_drawtask",
-                        "data" => array(
-                            "task_no" => $drawtask->task_no,
-                        ),
-                    ];
-                    // 三分钟
-                    ProcessAdminJob::dispatch($common)
-                        ->onQueue('admin');
+                    if($type == "callback") {
+                        $common = [
+                            "action" => "callback_drawtask",
+                            "data" => array(
+                                "task_no" => $drawtask->task_no,
+                            ),
+                        ];
+                        // 三分钟
+                        ProcessAdminJob::dispatch($common)
+                            ->onQueue('admin');
+                    } else {
+                        $this->processImg($drawtask);
+                    }
                 } else {
                     $drawtask->task_status = Task::TASK_STATUS_FAIL;
                 }
