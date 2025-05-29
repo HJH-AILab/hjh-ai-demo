@@ -1,6 +1,10 @@
 # hjh-ai-demo
 hjh-ai-demo
 
+## 好机绘AIGC云服务接口文档
+
+https://cloud.wepromo.cn/openapi/index.html
+
 ## callback data
 ```json
 {
