@@ -50,7 +50,7 @@
 
 ## 好机绘文博
 
-<video src="https://ai.wepromo.cn/images/announcement_image/844a870837301c4395bf1bb5a970fffa1741663274.mp4" />
+![Watch the video](https://ai.wepromo.cn/images/announcement_image/844a870837301c4395bf1bb5a970fffa1741663274.mp4)
 
 ## 联系我们
 
