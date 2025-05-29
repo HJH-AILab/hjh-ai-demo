@@ -2,6 +2,7 @@
 namespace App\Http\Services;
 
 use App\Jobs\ProcessAdminJob;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -43,7 +44,7 @@ class HjhCloudService extends AbstractService {
                 // 三分钟
                 ProcessAdminJob::dispatch($common)
                     ->onQueue('admin')
-                    ->delay(180);
+                    ->delay(Carbon::now()->addMinutes(3));
                 $list = $res["data"];
                 return $list;
             } else {

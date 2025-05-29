@@ -71,6 +71,7 @@ class DrawTaskService extends AbstractService {
                 "trace" => $e->getTraceAsString(),
             ));
         }
+        return array();
     }
 
     public function callbackImg($drawtask)
