@@ -3,7 +3,7 @@
 @section('content')
 <div class="row masonry">
     @foreach($images as $image)
-      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 item">
+      <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12 item">
         <div class="box">
           <a href="{{ route('image.show', ['id'=>$image->id]) }}">
             <img src="{{ $image->newthumb640 }}" data-src="{{ $image->newthumb640 }}" class="img-fluid lazyload fit" alt="{{ $image->desc }}" title="{{ $image->desc }}"/>
