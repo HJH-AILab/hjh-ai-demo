@@ -53,6 +53,7 @@ class TestTask extends Command
             ];
             // 三分钟
             ProcessAdminJob::dispatch($common)
+                ->onConnection('redis') // 指定连接
                 ->onQueue('admin');
         } catch(\Exception $e) {
             Log::error("TaskProcess", array('监听任务异常: ' . $e->getMessage()));

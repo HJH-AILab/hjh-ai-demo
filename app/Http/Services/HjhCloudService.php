@@ -43,8 +43,9 @@ class HjhCloudService extends AbstractService {
                 ];
                 // 三分钟
                 ProcessAdminJob::dispatch($common)
+                    ->onConnection('redis') // 指定连接
                     ->onQueue('admin')
-                    ->delay(Carbon::now()->addMinutes(3));
+                    ->delay(180);
                 $list = $res["data"];
                 return $list;
             } else {

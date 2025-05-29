@@ -142,6 +142,7 @@ class Wsc extends Base {
                         ];
                         // 三分钟
                         ProcessAdminJob::dispatch($common)
+                            ->onConnection('redis') // 指定连接
                             ->onQueue('admin');
                         Log::info("DrawTask", $common);
                     } else {
