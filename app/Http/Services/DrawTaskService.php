@@ -54,6 +54,7 @@ class DrawTaskService extends AbstractService {
                 Log::info("DrawTaskCallback", array("drawtask" => $drawtask->toArray()));
 
                 HjhWsc::getInstance()->callback($drawtask, $data);
+                Log::info("DrawTask", array("end callback1"));
                 
                 $ret = array(
                     "status" => $drawtask->task_status
