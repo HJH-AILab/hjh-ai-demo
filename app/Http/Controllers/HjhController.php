@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Image;
 use App\Models\Music;
+use Illuminate\Support\Facades\Log;
 use Image as Intervention;
 use Storage;
 
@@ -185,7 +186,13 @@ class HjhController extends Controller
         }
         $drawTask = DrawTaskService::getInstance()->getDrawTaskByTaskNo($taskNo);
 
+        Log::info("DrawTask", array(
+            "start_callback"
+        ));
         $ret = DrawTaskService::getInstance()->callback($drawTask, $callbackData);
+        Log::info("DrawTask", array(
+            "end_callback"
+        ));
         return json_encode(['code' => 200, 'message' => 'success', 'data' => $ret]);
     }
     
