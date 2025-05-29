@@ -165,6 +165,13 @@ class HjhController extends Controller
      */
     public function callback(Request $request)
     {
+        /**
+         * keepalive_timeout 600; #客户端浏览器超时时间
+
+         * fastcgi_connect_timeout 600; #php-fpm连接超时时间（等待php执行的最长时间，超过这个会向浏览器返回504或502）
+        fastcgi_send_timeout 600; #
+        fastcgi_read_timeout 600;
+         */
         //ini_set("max_execution_time", "300");
         set_time_limit(300);
         $data = $request->all();
