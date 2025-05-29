@@ -31,4 +31,4 @@
 
 ## 联系我们
 
-![企业微信](docs/WechatIMG13001.jpg =100x100)
+<img src="docs/WechatIMG13001.jpg" width="300px" alt="企业微信" align=center />
