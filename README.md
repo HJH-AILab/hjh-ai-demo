@@ -31,4 +31,4 @@
 
 ## 联系我们
 
-![企业微信](docs/WechatIMG13001.jpg)
+![企业微信](docs/WechatIMG13001.jpg){:height="50%" width="50%"}
