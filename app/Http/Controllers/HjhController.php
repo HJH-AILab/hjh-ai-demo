@@ -15,6 +15,7 @@ use App\Models\Music;
 use Illuminate\Support\Facades\Log;
 use Image as Intervention;
 use Storage;
+use Illuminate\Support\Facades\Redis;
 
 class HjhController extends Controller
 {
@@ -95,6 +96,10 @@ class HjhController extends Controller
     {
         $model = new Image();
         $userId = Auth::user()->id;
+        $cacheKey = "hjhimage:create:" . $userId;
+        if (Redis::exists($cacheKey) && $userId != 1) {
+            return redirect()->back()->withMessage('1天内只允许创作一次');
+        }
         if ($request->hasFile('thumb') && $request->file('thumb')->isValid()) {
 
             $file = $request->file('thumb');
@@ -146,6 +151,7 @@ class HjhController extends Controller
         $model->workflow_name = $request->get('workflow_name', '');
         $model->save();
 
+        Redis::setex($cacheKey, 86400, time());
         return redirect()->back()->withMessage('图片上传成功,审核通过后展示');
     }
 
