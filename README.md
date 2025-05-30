@@ -59,5 +59,6 @@
 ## 联系我们
 
 <img src="docs/WechatIMG13022.jpg" width="300px" alt="企业微信" align=center />
+<img src="docs/WX20250530-183744@2x.png" width="300px" alt="企业微信" align=center />
 
 [联系邮箱](mailto:xitongtongzhi@ai-space.net)
