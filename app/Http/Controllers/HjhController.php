@@ -97,7 +97,7 @@ class HjhController extends Controller
         $model = new Image();
         $userId = Auth::user()->id;
         $cacheKey = "hjhimage:create:" . $userId;
-        if (Redis::exists($cacheKey)) {
+        if (Redis::exists($cacheKey) && $userId != 1) {
             return redirect()->back()->withMessage('1天内只允许创作一次');
         }
         if ($request->hasFile('thumb') && $request->file('thumb')->isValid()) {
