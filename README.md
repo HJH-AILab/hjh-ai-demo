@@ -58,6 +58,6 @@
 
 ## 联系我们
 
-<img src="docs/WX20250529-163541@2x.png" width="300px" alt="企业微信" align=center />
+<img src="docs/WechatIMG13022.png" width="300px" alt="企业微信" align=center />
 
 [联系邮箱](mailto:xitongtongzhi@ai-space.net)
