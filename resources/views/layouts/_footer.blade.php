@@ -1,4 +1,4 @@
-<footer class="footer" style="height: 600px;">
+<footer class="footer">
   <div class="container">
     <p class="float-left">
       <a href="https://beian.miit.gov.cn" target="_blank">京ICP备14011022号-3</a>
