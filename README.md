@@ -2,6 +2,10 @@
 
 好机绘AIGC云服务示例，选择玩法，上传人脸图像完成AI绘图，AI绘图主要玩法包括创意大变身、主角梦想秀，本项目调用了好机绘AIGC云服务接口
 
+## 体验地址
+
+[好机绘AI](https://tiangong2.wepromo.cn/)
+
 ## 好机绘AIGC云服务接口文档
 
 [接口文档](https://cloud.wepromo.cn/openapi/index.html)
