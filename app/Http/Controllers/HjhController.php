@@ -118,7 +118,7 @@ class HjhController extends Controller
                     $createTaskNo
                 );
             } catch (\Exception $e) {
-                return redirect()->back()->withMessage("好机绘云服务" . $e->getMessage());
+                return redirect()->back()->withMessage("好机绘云服务: " . $e->getMessage());
             }
             
             //生成1920宽度图片

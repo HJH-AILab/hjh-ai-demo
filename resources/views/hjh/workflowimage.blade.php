@@ -14,7 +14,7 @@
                         @if(stripos(session('message'), '成功') > 0)
                         <div class="alert alert-info">{{ session('message') }}</div>
                         @else
-                        <div class="alert alert-error">{{ session('message') }}</div>
+                        <div class="alert alert-danger">{{ session('message') }}</div>
                         @endif
                         @endif
 
