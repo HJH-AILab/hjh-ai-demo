@@ -11,6 +11,66 @@ use InvalidArgumentException;
 class HjhResService extends AbstractService {
     use Singleton;
 
+     //1：合规，10：不合规，11：疑似，16：审核失败
+    const CONCLUSION_TYPE_OK = 1;
+    const CONCLUSION_TYPE_NO = 10;
+    const CONCLUSION_TYPE_SUSPECTED = 11;
+    const CONCLUSION_TYPE_FAIL = 16;
+
+    public static $_CONCLUSION_TYPE = array(
+        self::CONCLUSION_TYPE_OK => "合规",
+        self::CONCLUSION_TYPE_NO => "不合规",
+        self::CONCLUSION_TYPE_SUSPECTED => "疑似",
+        self::CONCLUSION_TYPE_FAIL => "审核失败",
+    );
+
+    /**
+     * imageReview
+     */
+    public function imageReview($imageBase64) {
+        try {
+            $params = array(
+                "collectionName" => "celebrity",
+                "confidenceThreshold" => "50",
+                "faceScoreThreshold" => "0",
+                "imageBase64" => $imageBase64,
+                "limit" => "5",
+                "maxFaceNum" => "5",
+                "namespace" => "hjh"
+            );
+            $token = $this->getToken();
+            $res = \App\Hjh\AI\Client::getCallbackHttp()->withHeaders([
+                'Authorization' => "Bearer $token",
+                ])
+                ->get(env("HJHRES_URL") . "/api/openapi/imageReview/check", $params)->json();
+            Log::info("hjhres", array(
+                "params" => $params,
+                "token" => $token,
+                "res" => $res,
+            ));
+            /**
+             * "reason": "政治人物",
+		"conclusion_type": 10,
+		"conclusion": "不合规",
+		"face_index": 0,
+             */
+            if($res && $res["code"] == 200) {
+                $conclusionType = $res["data"]["conclusion_type"];
+                if($conclusionType == self::CONCLUSION_TYPE_OK) {
+                    return $res["data"];
+                } else {
+                    throw new InvalidArgumentException($res["data"]["conclusion"]);
+                }
+            } else {
+                throw new InvalidArgumentException($res["message"]);
+            }
+        } catch(Exception $e) {
+            Log::error("hjhres", array($e->getMessage(), $e->getTraceAsString()));
+            Log::info("getResCategoryList fail", array($e->getMessage(), $e->getTraceAsString()));
+            return array();
+        }
+    }
+
     /**
      * getResCategoryList
      */
