@@ -11,7 +11,7 @@
                     <form method="POST" action="{{ route('workflow.create') }}" class="was-validated" enctype="multipart/form-data">
                         @csrf
                         @if(session('message'))
-                        @if(stripos(session('message'), ‘成功') > 0)
+                        @if(stripos(session('message'), '成功') > 0)
                         <div class="alert alert-info">{{ session('message') }}</div>
                         @else
                         <div class="alert alert-error">{{ session('message') }}</div>
