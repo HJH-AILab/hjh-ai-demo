@@ -107,15 +107,20 @@ class HjhController extends Controller
             $imageName = uniqid(date('YmdHis')) . $file->getClientOriginalName();
 
             $createTaskNo = $userId . date('YmdHis') . mt_rand(1000000, 9999999);
-            HjhCloudService::getInstance()->create(
-                $userId,
-                $file,
-                $model->thumb,
-                Base::FORMAT_SQURE,
-                $request->get('workflow_id'),
-                $request->get('workflow_name'),
-                $createTaskNo
-            );
+            try {
+                HjhCloudService::getInstance()->create(
+                    $userId,
+                    $file,
+                    $model->thumb,
+                    Base::FORMAT_SQURE,
+                    $request->get('workflow_id'),
+                    $request->get('workflow_name'),
+                    $createTaskNo
+                );
+            } catch (\Exception $e) {
+                return redirect()->back()->withMessage("好机绘云服务" . $e->getMessage());
+            }
+            
             //生成1920宽度图片
             $resource1920 = Intervention::make($file)->resize(1920, null, function ($constraint) {
                 $constraint->aspectRatio();

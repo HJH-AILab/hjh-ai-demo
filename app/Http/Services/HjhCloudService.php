@@ -54,7 +54,7 @@ class HjhCloudService extends AbstractService {
         } catch(Exception $e) {
             Log::error("hjhcloud", array($e->getMessage(), $e->getTraceAsString()));
             Log::info("create fail", array($e->getMessage(), $e->getTraceAsString()));
-            return array();
+            throw $e;
         }
     }
 
