@@ -7,6 +7,7 @@ use App\Http\Services\Draw\Images;
 use App\Http\Services\Draw\Task;
 use App\Http\Services\DrawTaskService;
 use App\Http\Services\HjhCloudService;
+use App\Http\Services\HjhResService;
 use App\Models\HjhImage;
 use Illuminate\Http\Request;
 use Auth;
@@ -108,6 +109,10 @@ class HjhController extends Controller
 
             $createTaskNo = $userId . date('YmdHis') . mt_rand(1000000, 9999999);
             try {
+                HjhResService::getInstance()->imageReview(
+                    $file,
+                    $model->thumb
+                );
                 HjhCloudService::getInstance()->create(
                     $userId,
                     $file,

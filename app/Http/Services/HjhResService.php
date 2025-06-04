@@ -28,17 +28,20 @@ class HjhResService extends AbstractService {
     /**
      * imageReview
      */
-    public function imageReview($imageBase64) {
+    public function imageReview($image, $imageUrl = "") {
         try {
             $params = array(
+                "image_url" => $imageUrl,
                 "collectionName" => "celebrity",
                 "confidenceThreshold" => "50",
                 "faceScoreThreshold" => "0",
-                "imageBase64" => $imageBase64,
                 "limit" => "5",
                 "maxFaceNum" => "5",
                 "namespace" => "hjh"
             );
+            Log::info("hjhres", $params);
+            $base64 = HjhImageService::getImageBase64($image);
+            $params["imageBase64"] = $base64;
             $token = $this->getToken();
             $res = \App\Hjh\AI\Client::getCallbackHttp()->withHeaders([
                 'Authorization' => "Bearer $token",
