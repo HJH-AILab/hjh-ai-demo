@@ -70,6 +70,8 @@
                         </div>
 
                         <div class="form-group row">
+                        </div>
+                        <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                             <input type="checkbox" id="agreement1">
                             <span>阅读并同意<a target="_blank" href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E5%8D%8F%E8%AE%AE01.html">好机绘产品协议</a></span>
