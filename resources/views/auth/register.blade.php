@@ -74,7 +74,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                             <input type="checkbox" id="agreement1">
-                            <span>阅读并同意<a target="_blank" href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E5%8D%8F%E8%AE%AE01.html">好机绘产品协议</a></span>
+                            <span>阅读并同意<a target="_blank" href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E5%8D%8F%E8%AE%AE01.html">《好机绘产品协议》</a></span>
                             <div role="alert" id="element" aria-live="assertive" aria-atomic="true" class="toast fade hide" data-autohide="true" data-delay="2000">
                                 <div class="toast-header">
                                     <strong class="mr-auto">好机绘产品协议</strong>
@@ -91,7 +91,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                             <input type="checkbox" id="agreement2">
-                            <span>阅读并同意<a target="_blank" href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%9601.html">好机绘产品隐私政策</a></span>
+                            <span>阅读并同意<a target="_blank" href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%9601.html">《好机绘产品隐私政策》</a></span>
                             <div role="alert" id="element1" aria-live="assertive" aria-atomic="true" class="toast fade hide" data-autohide="true" data-delay="2000">
                                 <div class="toast-header">
                                     <strong class="mr-auto">好机绘产品隐私政策</strong>
