@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form id="loginform" name="loginform" method="POST" action="{{ route('register') }}" omsubmit='return checkForm();'>
+                    <form id="loginform" name="loginform" method="POST" action="{{ route('register') }}" omsubmit='javascript:return false checkForm()'>
                         @csrf
 
                         <div class="form-group row">
@@ -85,9 +85,7 @@
             form.reportValidity();
         }
     }
-    const form = document.getElementById('loginform');
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    function checkForm() {
         return false;
-    });
+    }
 </script>
