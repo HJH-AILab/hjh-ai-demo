@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form id="loginform" name="loginform" method="POST" action="{{ route('register') }}">
+                    <form id="loginform" name="loginform" method="POST" action="{{ route('register') }}" omsubmit='return checkForm()'>
                         @csrf
 
                         <div class="form-group row">
@@ -63,7 +63,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="button" class="btn btn-primary" onclick='doSubmitForm()'>
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -84,5 +84,8 @@
         } else {
             form.reportValidity();
         }
+    }
+    function checkForm() {
+        return false;
     }
 </script>
