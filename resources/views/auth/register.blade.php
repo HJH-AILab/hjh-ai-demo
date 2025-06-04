@@ -84,7 +84,7 @@
                             </div>
                         </div>
 
-                        <div role="alert" id="element" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+                        <div role="alert" id="element" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="true">
                             <div class="toast-header">
                                 <strong class="mr-auto">好机绘产品协议</strong>
                                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -95,7 +95,7 @@
                                 请勾选阅读并同意好机绘产品协议
                             </div>
                         </div>
-                        <div role="alert" id="element1" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+                        <div role="alert" id="element1" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="true">
                             <div class="toast-header">
                                 <strong class="mr-auto">好机绘产品隐私政策</strong>
                                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
