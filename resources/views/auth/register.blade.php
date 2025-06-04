@@ -88,6 +88,30 @@
             </div>
         </div>
     </div>
+    <div role="alert" id="element" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="..." class="rounded mr-2" alt="...">
+            <strong class="mr-auto">好机绘产品协议</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            请勾选阅读并同意好机绘产品协议
+        </div>
+    </div>
+    <div role="alert" id="element1" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+        <div class="toast-header">
+            <img src="..." class="rounded mr-2" alt="...">
+            <strong class="mr-auto">好机绘产品隐私政策</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            请勾选阅读并同意好机绘产品隐私政策
+        </div>
+    </div>
 </div>
 @endsection
 <script>
@@ -99,11 +123,11 @@
                 if($("#agreement2").is(":checked")) {
                 } else {  // 进行拦截校验
                     //alert('请勾选阅读并同意好机绘产品隐私政策');
-                    $('#element').toast('show')
+                    $('#element1').toast('show')
                 }
             } else {  // 进行拦截校验
                 //alert('请勾选阅读并同意好机绘产品协议');
-                $('#element1').toast('show')
+                $('#element').toast('show')
             }
         } else {
             form.reportValidity();
