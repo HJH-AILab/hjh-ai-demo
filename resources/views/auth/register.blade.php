@@ -83,33 +83,34 @@
                             <span>阅读并同意<a target="_blank" href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%9601.html">好机绘产品隐私政策</a></span>
                             </div>
                         </div>
+
+                        <div role="alert" id="element" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+                            <div class="toast-header">
+                                <img src="..." class="rounded mr-2" alt="...">
+                                <strong class="mr-auto">好机绘产品协议</strong>
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="toast-body">
+                                请勾选阅读并同意好机绘产品协议
+                            </div>
+                        </div>
+                        <div role="alert" id="element1" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+                            <div class="toast-header">
+                                <img src="..." class="rounded mr-2" alt="...">
+                                <strong class="mr-auto">好机绘产品隐私政策</strong>
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="toast-body">
+                                请勾选阅读并同意好机绘产品隐私政策
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-    <div role="alert" id="element" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
-        <div class="toast-header">
-            <img src="..." class="rounded mr-2" alt="...">
-            <strong class="mr-auto">好机绘产品协议</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            请勾选阅读并同意好机绘产品协议
-        </div>
-    </div>
-    <div role="alert" id="element1" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
-        <div class="toast-header">
-            <img src="..." class="rounded mr-2" alt="...">
-            <strong class="mr-auto">好机绘产品隐私政策</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            请勾选阅读并同意好机绘产品隐私政策
         </div>
     </div>
 </div>
