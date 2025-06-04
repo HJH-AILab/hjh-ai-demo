@@ -88,5 +88,6 @@
     const form = document.getElementById('loginform');
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        return false;
     });
 </script>
