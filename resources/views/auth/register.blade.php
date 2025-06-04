@@ -76,7 +76,7 @@
 </div>
 @endsection
 <script>
-    $("loginform").submit(function(e){
+    $("#loginform").submit(function(e){
         e.preventDefault();
         alert("Submit prevented");
     });
