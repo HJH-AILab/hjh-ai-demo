@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form id="loginform" name="loginform" method="POST" action="{{ route('register') }}" onsubmit='return checkForm()'>
+                    <form id="loginform" name="loginform" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -76,7 +76,8 @@
 </div>
 @endsection
 <script>
-    function checkForm () { // 点击“提交”按钮，执行的方法
-        return false;
-    }
+    $("loginform").submit(function(e){
+        e.preventDefault();
+        alert("Submit prevented");
+    });
 </script>
