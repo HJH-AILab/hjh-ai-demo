@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单提交示例</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#64748B',
+                        success: '#10B981',
+                        danger: '#EF4444',
+                        warning: '#F59E0B',
+                        info: '#06B6D4',
+                        light: '#F8FAFC',
+                        dark: '#1E293B'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .form-input-focus {
+                @apply ring-2 ring-primary/50 border-primary transition-all duration-300;
+            }
+            .btn-hover {
+                @apply transform hover:scale-[1.02] hover:shadow-lg transition-all duration-300;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter min-h-screen flex flex-col">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center">
+                        <i class="fa fa-wpforms text-primary text-2xl mr-2"></i>
+                        <span class="font-bold text-xl text-dark">表单提交示例</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">
+                        <i class="fa fa-github mr-1"></i> 源码
+                    </button>
+                    <button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 btn-hover">
+                        <i class="fa fa-user-circle mr-1"></i> 登录
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8">
+        <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl">
+            <div class="bg-gradient-to-r from-primary to-info p-6 text-white">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold mb-2">表单提交示例</h2>
+                <p class="text-white/80">使用 JavaScript 实现表单的异步提交</p>
+            </div>
+            
+            <div class="p-6">
+                <form id="myForm" class="space-y-6">
+                    <!-- 姓名 -->
+                    <div class="space-y-2">
+                        <label for="name" class="block text-sm font-medium text-gray-700">
+                            <i class="fa fa-user mr-1"></i> 姓名
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa fa-user text-gray-400"></i>
+                            </div>
+                            <input type="text" id="name" name="name" required
+                                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:form-input-focus"
+                                placeholder="请输入您的姓名">
+                        </div>
+                        <p class="text-xs text-gray-500 hidden" id="nameError">请输入有效的姓名</p>
+                    </div>
+
+                    <!-- 邮箱 -->
+                    <div class="space-y-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700">
+                            <i class="fa fa-envelope mr-1"></i> 邮箱
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa fa-envelope text-gray-400"></i>
+                            </div>
+                            <input type="email" id="email" name="email" required
+                                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:form-input-focus"
+                                placeholder="请输入您的邮箱">
+                        </div>
+                        <p class="text-xs text-gray-500 hidden" id="emailError">请输入有效的邮箱地址</p>
+                    </div>
+
+                    <!-- 消息 -->
+                    <div class="space-y-2">
+                        <label for="message" class="block text-sm font-medium text-gray-700">
+                            <i class="fa fa-comment mr-1"></i> 消息
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa fa-comment text-gray-400"></i>
+                            </div>
+                            <textarea id="message" name="message" rows="4" required
+                                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:form-input-focus resize-none"
+                                placeholder="请输入您的消息"></textarea>
+                        </div>
+                        <p class="text-xs text-gray-500 hidden" id="messageError">消息内容不能为空</p>
+                    </div>
+
+                    <!-- 同意条款 -->
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="terms" name="terms" type="checkbox" required
+                                class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="terms" class="text-gray-600">我同意<a href="#" class="text-primary hover:underline">服务条款</a>和<a href="#" class="text-primary hover:underline">隐私政策</a></label>
+                        </div>
+                        <p class="text-xs text-gray-500 hidden ml-auto" id="termsError">请同意条款</p>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <div class="pt-4">
+                        <button type="submit" id="submitBtn"
+                            class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary btn-hover">
+                            <i class="fa fa-paper-plane mr-2"></i> 提交表单
+                        </button>
+                    </div>
+                </form>
+
+                <!-- 加载指示器 -->
+                <div id="loading" class="hidden py-8 text-center">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    <p class="mt-3 text-gray-600">正在提交表单...</p>
+                </div>
+
+                <!-- 成功消息 -->
+                <div id="successMessage" class="hidden py-8 text-center">
+                    <div class="rounded-full bg-success/10 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-check text-2xl text-success"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">提交成功！</h3>
+                    <p class="text-gray-500 mb-4">感谢您的留言，我们会尽快回复您。</p>
+                    <button id="resetForm" class="text-primary hover:text-primary/80 font-medium text-sm">
+                        <i class="fa fa-refresh mr-1"></i> 重新提交
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 表单提交说明 -->
+        <div class="w-full max-w-2xl mt-8 bg-white rounded-xl shadow-md p-6 transition-all duration-500 hover:shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                <i class="fa fa-info-circle text-primary mr-2"></i> 表单提交说明
+            </h3>
+            <ul class="space-y-2 text-gray-600">
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-success mt-1 mr-2"></i>
+                    <span>表单使用 JavaScript 进行异步提交，无需刷新页面</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-success mt-1 mr-2"></i>
+                    <span>包含实时表单验证，确保数据的有效性</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-success mt-1 mr-2"></i>
+                    <span>提交过程中显示加载状态，提升用户体验</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fa fa-check-circle text-success mt-1 mr-2"></i>
+                    <span>提交成功后显示友好的反馈信息</span>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center">
+                        <i class="fa fa-wpforms text-primary text-2xl mr-2"></i>
+                        <span class="font-bold text-xl">表单提交示例</span>
+                    </div>
+                    <p class="text-gray-400 mt-2 text-sm">使用现代前端技术构建的表单提交演示</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fa fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 表单提交示例. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('myForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const successMessage = document.getElementById('successMessage');
+            const resetFormBtn = document.getElementById('resetForm');
+            
+            // 表单验证函数
+            function validateForm() {
+                let isValid = true;
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const terms = document.getElementById('terms').checked;
+                
+                // 验证姓名
+                if (name === '') {
+                    showError('name', '请输入您的姓名');
+                    isValid = false;
+                } else {
+                    hideError('name');
+                }
+                
+                // 验证邮箱
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email === '') {
+                    showError('email', '请输入您的邮箱');
+                    isValid = false;
+                } else if (!emailRegex.test(email)) {
+                    showError('email', '请输入有效的邮箱地址');
+                    isValid = false;
+                } else {
+                    hideError('email');
+                }
+                
+                // 验证消息
+                if (message === '') {
+                    showError('message', '请输入您的消息');
+                    isValid = false;
+                } else {
+                    hideError('message');
+                }
+                
+                // 验证条款
+                if (!terms) {
+                    showError('terms', '请同意条款');
+                    isValid = false;
+                } else {
+                    hideError('terms');
+                }
+                
+                return isValid;
+            }
+            
+            // 显示错误信息
+            function showError(field, message) {
+                const errorElement = document.getElementById(`${field}Error`);
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+                errorElement.classList.add('text-danger');
+                
+                const input = document.getElementById(field);
+                input.classList.add('border-danger');
+                input.classList.remove('focus:form-input-focus');
+                input.classList.add('focus:ring-2');
+                input.classList.add('focus:ring-danger/50');
+            }
+            
+            // 隐藏错误信息
+            function hideError(field) {
+                const errorElement = document.getElementById(`${field}Error`);
+                errorElement.classList.add('hidden');
+                
+                const input = document.getElementById(field);
+                input.classList.remove('border-danger');
+                input.classList.add('focus:form-input-focus');
+                input.classList.remove('focus:ring-2');
+                input.classList.remove('focus:ring-danger/50');
+            }
+            
+            // 处理表单提交
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    // 显示加载状态
+                    form.classList.add('hidden');
+                    loading.classList.remove('hidden');
+                    
+                    // 模拟API请求
+                    setTimeout(function() {
+                        // 隐藏加载状态，显示成功消息
+                        loading.classList.add('hidden');
+                        successMessage.classList.remove('hidden');
+                        
+                        // 滚动到成功消息
+                        successMessage.scrollIntoView({ behavior: 'smooth' });
+                    }, 1500);
+                }
+            });
+            
+            // 重置表单
+            resetFormBtn.addEventListener('click', function() {
+                form.reset();
+                successMessage.classList.add('hidden');
+                form.classList.remove('hidden');
+                
+                // 隐藏所有错误
+                const errorElements = document.querySelectorAll('[id$="Error"]');
+                errorElements.forEach(element => {
+                    element.classList.add('hidden');
+                });
+                
+                // 重置输入样式
+                const inputs = form.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    input.classList.remove('border-danger');
+                    input.classList.add('focus:form-input-focus');
+                    input.classList.remove('focus:ring-2');
+                    input.classList.remove('focus:ring-danger/50');
+                });
+                
+                // 滚动到表单顶部
+                form.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // 实时验证
+            const inputs = form.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    // 对于复选框，使用change事件
+                    if (input.type === 'checkbox') {
+                        return;
+                    }
+                    
+                    const field = input.id;
+                    const value = input.value.trim();
+                    
+                    // 实时验证
+                    switch(field) {
+                        case 'name':
+                            if (value === '') {
+                                showError('name', '请输入您的姓名');
+                            } else {
+                                hideError('name');
+                            }
+                            break;
+                        case 'email':
+                            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            if (value === '') {
+                                showError('email', '请输入您的邮箱');
+                            } else if (!emailRegex.test(value)) {
+                                showError('email', '请输入有效的邮箱地址');
+                            } else {
+                                hideError('email');
+                            }
+                            break;
+                        case 'message':
+                            if (value === '') {
+                                showError('message', '请输入您的消息');
+                            } else {
+                                hideError('message');
+                            }
+                            break;
+                    }
+                });
+            });
+            
+            // 复选框验证
+            document.getElementById('terms').addEventListener('change', function() {
+                if (this.checked) {
+                    hideError('terms');
+                } else {
+                    showError('terms', '请同意条款');
+                }
+            });
+            
+            // 滚动时导航栏效果
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 10) {
+                    nav.classList.add('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
+                    nav.classList.remove('shadow-md', 'bg-white');
+                } else {
+                    nav.classList.remove('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
+                    nav.classList.add('shadow-md', 'bg-white');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    
