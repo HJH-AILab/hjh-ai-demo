@@ -86,7 +86,6 @@
 
                         <div role="alert" id="element" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
                             <div class="toast-header">
-                                <img src="..." class="rounded mr-2" alt="...">
                                 <strong class="mr-auto">好机绘产品协议</strong>
                                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -98,7 +97,6 @@
                         </div>
                         <div role="alert" id="element1" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
                             <div class="toast-header">
-                                <img src="..." class="rounded mr-2" alt="...">
                                 <strong class="mr-auto">好机绘产品隐私政策</strong>
                                 <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
