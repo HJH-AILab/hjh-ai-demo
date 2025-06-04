@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form id="loginform" name="loginform" method="POST" action="javascript:return false checkForm()">
+                    <form id="loginform" name="loginform" method="POST" action="javascript:return checkForm()">
                         @csrf
 
                         <div class="form-group row">
