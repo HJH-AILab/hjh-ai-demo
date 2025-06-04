@@ -5,6 +5,7 @@ use App\Hjh\AI\Client as AIClient;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 use InvalidArgumentException;
 
