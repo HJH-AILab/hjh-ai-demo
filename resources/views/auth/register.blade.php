@@ -68,11 +68,6 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="protocol reg1">	
-                            <span id="isSelProto" class="red-checkbox" onClick="xy()"></span>已阅并同意	
-                            <a target="_blank" class="baseColorFt" href="隐私协议链接">《隐私协议》</a>
-                            <p id="notSelProtoError" class="error_msg"><span class="msgIcon"></span>请先勾选协议</p>	
-                        </div>
                     </form>
                 </div>
             </div>
@@ -80,25 +75,6 @@
     </div>
 </div>
 @endsection
-<style>
-    .red-checkbox{
-        background-image: url('https://img.58cdn.com.cn/git/teg-app-fe/passport-pc-ui/img/user-list-uncheck.png');//为了方便易懂，这边图放的是58的链接，仅供学习参考。
-        height: 17px;
-        width: 17px;
-        background-size: 14px 14px;
-        background-repeat: no-repeat;
-        vertical-align: middle;
-        display: inline-block;
-        cursor: pointer;
-    }
-    .active{
-        background-image: url('https://img.58cdn.com.cn/git/teg-app-fe/passport-pc-ui/img/user-list-check.png');//为了方便易懂，这边图放的是58的链接，仅供学习参考。
-    }
-    .error_msg{
-        display: none;
-        color: red;
-    }
-</style>
 <script>
     function doSubmitForm() {
         var form = document.getElementById('loginform');
