@@ -85,7 +85,8 @@
             form.reportValidity();
         }
     }
-    function checkForm() {
-        return false;
-    }
+    const form = document.getElementById('loginform');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+    });
 </script>
