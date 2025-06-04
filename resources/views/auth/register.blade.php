@@ -68,9 +68,13 @@
                                 </button>
                             </div>
                         </div>
-                        <div id="signedAgreement">
-                            <input type="checkbox" id="cr" style="-webkit-box-shadow: 0 0 0 #fff;-moz-box-shadow: 0 0 0 #fff;">
-                            <span style="text-decoration:underline;cursor: pointer">我已阅读并同意签约家庭医生协议</span>
+                        <div>
+                            <input type="checkbox" id="agreement1">
+                            <span>阅读并同意<a href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E5%8D%8F%E8%AE%AE01.html">好机绘产品协议</a></span>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="agreement2">
+                            <span>阅读并同意<a href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%9601.html">好机绘产品隐私政策</a></span>
                         </div>
                     </form>
                 </div>
@@ -84,9 +88,13 @@
         var form = document.getElementById('loginform');
         if (form.checkValidity()) {
             //form.submit();
-            if($("#cr").is(":checked")) {
+            if($("#agreement1").is(":checked")) {
+                if($("#agreement2").is(":checked")) {
+                } else {  // 进行拦截校验
+                    alert('请勾选阅读并同意好机绘产品隐私政策');
+                }
             } else {  // 进行拦截校验
-                alert('请勾选我已阅读并同意签约家庭医生协议按钮');
+                alert('请勾选阅读并同意好机绘产品协议');
             }
         } else {
             form.reportValidity();
