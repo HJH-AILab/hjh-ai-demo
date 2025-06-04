@@ -79,6 +79,7 @@
     function doSubmitForm() {
         var form = document.getElementById('loginform');
         if (form.checkValidity()) {
+            alert('Form is valid, submitting now...');
             //form.submit();
         } else {
             form.reportValidity();
