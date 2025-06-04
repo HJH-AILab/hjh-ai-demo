@@ -68,6 +68,10 @@
                                 </button>
                             </div>
                         </div>
+                        <div id="signedAgreement">
+                            <input type="checkbox" id="cr" style="-webkit-box-shadow: 0 0 0 #fff;-moz-box-shadow: 0 0 0 #fff;">
+                            <span style="text-decoration:underline;cursor: pointer">我已阅读并同意签约家庭医生协议</span>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -79,8 +83,11 @@
     function doSubmitForm() {
         var form = document.getElementById('loginform');
         if (form.checkValidity()) {
-            alert('Form is valid, submitting now...');
             //form.submit();
+            if($("#cr").is(":checked")) {
+            } else {  // 进行拦截校验
+                alert('请勾选我已阅读并同意签约家庭医生协议按钮');
+            }
         } else {
             form.reportValidity();
         }
