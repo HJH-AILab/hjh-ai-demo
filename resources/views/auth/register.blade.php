@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form id="loginform" name="loginform" method="POST" action="">
+                    <form id="loginform" name="loginform" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -63,7 +63,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary" onclick='doSubmitForm()'>
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -76,8 +76,12 @@
 </div>
 @endsection
 <script>
-    $("#loginform").submit(function(e){
-        e.preventDefault();
-        alert("Submit prevented");
-    });
+    function doSubmitForm() {
+        var form = document.getElementById('loginform');
+        if (form.checkValidity()) {
+            form.submit();
+        } else {
+            form.reportValidity();
+        }
+    }
 </script>
