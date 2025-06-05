@@ -186,7 +186,7 @@
         $("#agreement2").prop("checked", true);
     }
     const dom = document.getElementById('modal');
-        dom.addEventListener('scroll', () => {
+    dom.addEventListener('scroll', () => {
         const clientHeight = dom.clientHeight;
         const scrollTop = dom.scrollTop;
         const scrollHeight = dom.scrollHeight;
