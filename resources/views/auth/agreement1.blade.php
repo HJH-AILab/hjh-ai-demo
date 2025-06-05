@@ -1,6 +1,7 @@
 <style type="text/css">
 	.page { padding: 1rem; }
 	.page p { margin-top: 10px; line-height: 115%; text-align: justify; orphans: 0; widows: 0; margin-bottom: 0.1in; direction: ltr; background: transparent }
+	.page font { line-height: 115%; }
 	.page a:link { color: #0563c1; text-decoration: underline }
 </style>
 <div class="page">
