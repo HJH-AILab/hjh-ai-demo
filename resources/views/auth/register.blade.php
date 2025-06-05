@@ -188,7 +188,7 @@
     }
     $(function() {
         let dom = $('.modal-body');
-        dom.addEventListener('scroll', () => {
+        dom[0].addEventListener('scroll', () => {
             const clientHeight = dom.clientHeight;
             const scrollTop = dom.scrollTop;
             const scrollHeight = dom.scrollHeight;
