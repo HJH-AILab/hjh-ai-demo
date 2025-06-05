@@ -74,7 +74,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                             <input type="checkbox" id="agreement1">
-                            <span>阅读并同意<a target="_blank" href="https://hjh.wepromo.cn/%E5%A5%BD%E6%9C%BA%E7%BB%98%E4%BA%A7%E5%93%81%E5%8D%8F%E8%AE%AE01.html">《好机绘产品协议》</a></span>
+                            <span>阅读并同意<a href="javascript:void(0)" onclick="viewAgreement1(this);return false;">《好机绘产品协议》</a></span>
                             <div role="alert" id="element" aria-live="assertive" aria-atomic="true" class="toast fade hide" data-autohide="true" data-delay="2000">
                                 <div class="toast-header">
                                     <strong class="mr-auto">好机绘产品协议</strong>
@@ -110,6 +110,26 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">好机绘产品协议</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            @include('auth.agreement1')
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+    </div>
+    </div>
 </div>
 @endsection
 <script>
@@ -130,5 +150,8 @@
         } else {
             form.reportValidity();
         }
+    }
+    function viewAgreement1(that) {
+        $('#modal').modal('show');
     }
 </script>
