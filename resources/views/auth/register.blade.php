@@ -112,7 +112,7 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="modalLabel">好机绘产品协议</h5>
@@ -125,7 +125,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-            <button type="button" class="btn btn-primary" onclick="agreement1()">同意</button>
+            <button type="button" class="btn btn-primary" id="btnAgreement1" disabled onclick="agreement1()">同意</button>
         </div>
         </div>
     </div>
@@ -185,4 +185,14 @@
         $('#modal1').modal('hide');
         $("#agreement2").prop("checked", true);
     }
+    const dom = document.getElementById('modal');
+        dom.addEventListener('scroll', () => {
+        const clientHeight = dom.clientHeight;
+        const scrollTop = dom.scrollTop;
+        const scrollHeight = dom.scrollHeight;
+        if (clientHeight + scrollTop === scrollHeight) {
+            console.log('竖向滚动条已经滚动到底部');
+            document.getElementById('btnAgreement1').disabled = false;
+        }
+    });
 </script>
