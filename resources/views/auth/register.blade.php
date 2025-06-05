@@ -185,7 +185,7 @@
         $('#modal1').modal('hide');
         $("#agreement2").prop("checked", true);
     }
-    const dom = document.getElementById('modal');
+    let dom = $('.modal-body');
     dom.addEventListener('scroll', () => {
         const clientHeight = dom.clientHeight;
         const scrollTop = dom.scrollTop;
