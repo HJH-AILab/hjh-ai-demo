@@ -152,6 +152,7 @@
     </div>
 </div>
 @endsection
+@push('pbl-js')
 <script>
     function doSubmitForm() {
         var form = document.getElementById('loginform');
@@ -198,3 +199,4 @@
         });
     });
 </script>
+@endpush
