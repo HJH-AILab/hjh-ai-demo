@@ -3,7 +3,7 @@
 	.page p { line-height: 115%; text-align: justify; orphans: 0; widows: 0; margin-bottom: 0.1in; direction: ltr; background: transparent }
 	.page a:link { color: #0563c1; text-decoration: underline }
 </style>
-<div class="page">
+<div>
 <p align="center" style="line-height: 100%; margin-bottom: 0in">
 <font face="等线"><span lang="zh-CN"><font size="6" style="font-size: 24pt"><b>好机绘产品用户协议</b></font></span></font></p>
 <p align="right" style="line-height: 100%; margin-bottom: 0in"><br/>
