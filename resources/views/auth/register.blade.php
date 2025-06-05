@@ -125,7 +125,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-            <button type="button" class="btn btn-primary">同意</button>
+            <button type="button" class="btn btn-primary" onclick="agreement1()">同意</button>
         </div>
         </div>
     </div>
@@ -153,5 +153,9 @@
     }
     function viewAgreement1(that) {
         $('#modal').modal('show');
+    }
+    function agreement1() {
+        $('#modal').modal('hide');
+        $("#agreement1").prop("checked", true);
     }
 </script>
