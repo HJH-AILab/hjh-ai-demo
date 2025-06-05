@@ -185,14 +185,16 @@
         $('#modal1').modal('hide');
         $("#agreement2").prop("checked", true);
     }
-    let dom = $('.modal-body');
-    dom.addEventListener('scroll', () => {
-        const clientHeight = dom.clientHeight;
-        const scrollTop = dom.scrollTop;
-        const scrollHeight = dom.scrollHeight;
-        if (clientHeight + scrollTop === scrollHeight) {
-            console.log('竖向滚动条已经滚动到底部');
-            document.getElementById('btnAgreement1').disabled = false;
-        }
+    $(function() {
+        let dom = $('.modal-body');
+        dom.addEventListener('scroll', () => {
+            const clientHeight = dom.clientHeight;
+            const scrollTop = dom.scrollTop;
+            const scrollHeight = dom.scrollHeight;
+            if (clientHeight + scrollTop === scrollHeight) {
+                console.log('竖向滚动条已经滚动到底部');
+                document.getElementById('btnAgreement1').disabled = false;
+            }
+        });
     });
 </script>
