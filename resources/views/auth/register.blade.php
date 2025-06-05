@@ -187,6 +187,13 @@
         $("#agreement2").prop("checked", true);
     }
     $(function() {
+        // focus modal body when opened
+        $('#modal').on('shown.bs.modal', function () {
+            $(this).find('.modal-body').focus();
+        });
+        $('#modal1').on('shown.bs.modal', function () {
+            $(this).find('.modal-body').focus();
+        });
         let dom = $('.modal-body');
         dom[0].addEventListener('scroll', () => {
             const clientHeight = dom[0].clientHeight;
