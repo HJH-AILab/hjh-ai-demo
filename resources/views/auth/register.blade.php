@@ -132,7 +132,7 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="modalLabel">好机绘产品隐私政策</h5>
@@ -145,7 +145,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-            <button type="button" class="btn btn-primary" onclick="agreement2()">同意</button>
+            <button type="button" class="btn btn-primary" id="btnAgreement2" disabled onclick="agreement2()">同意</button>
         </div>
         </div>
     </div>
@@ -195,6 +195,15 @@
             if (clientHeight + scrollTop === scrollHeight) {
                 console.log('竖向滚动条已经滚动到底部');
                 document.getElementById('btnAgreement1').disabled = false;
+            }
+        });
+        dom[1].addEventListener('scroll', () => {
+            const clientHeight = dom[1].clientHeight;
+            const scrollTop = dom[1].scrollTop;
+            const scrollHeight = dom[1].scrollHeight;
+            if (clientHeight + scrollTop === scrollHeight) {
+                console.log('竖向滚动条已经滚动到底部');
+                document.getElementById('btnAgreement2').disabled = false;
             }
         });
     });
