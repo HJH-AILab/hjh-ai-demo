@@ -64,9 +64,9 @@ class HjhResService extends AbstractService {
                     return $res["data"];
                 } else {
                     if($res["data"]["reason"] == "nsfw") {
-                        throw new InvalidArgumentException($res["data"]["conclusion"]);
+                        throw new InvalidArgumentException("不合规，图片包含NSFW内容");
                     } else {
-                        throw new InvalidArgumentException($res["data"]["conclusion"]);
+                        throw new InvalidArgumentException("不合规，图片包含敏感内容");
                     }
                 }
             } else {
