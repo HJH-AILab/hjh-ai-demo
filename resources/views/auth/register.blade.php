@@ -196,6 +196,7 @@
         });
         let dom = $('.modal-body');
         dom[0].addEventListener('scroll', () => {
+            console.log('竖向滚动条开始滚动');
             const clientHeight = dom[0].clientHeight;
             const scrollTop = dom[0].scrollTop;
             const scrollHeight = dom[0].scrollHeight;
@@ -205,6 +206,7 @@
             }
         });
         dom[1].addEventListener('scroll', () => {
+            console.log('竖向滚动条开始滚动');
             const clientHeight = dom[1].clientHeight;
             const scrollTop = dom[1].scrollTop;
             const scrollHeight = dom[1].scrollHeight;
