@@ -63,7 +63,11 @@ class HjhResService extends AbstractService {
                 if($conclusionType == self::CONCLUSION_TYPE_OK) {
                     return $res["data"];
                 } else {
-                    throw new InvalidArgumentException($res["data"]["conclusion"]);
+                    if($res["data"]["reason"] == "nsfw") {
+                        throw new InvalidArgumentException($res["data"]["conclusion"]);
+                    } else {
+                        throw new InvalidArgumentException($res["data"]["conclusion"]);
+                    }
                 }
             } else {
                 throw new InvalidArgumentException($res["message"]);
