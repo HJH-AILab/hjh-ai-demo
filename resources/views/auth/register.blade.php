@@ -200,7 +200,7 @@
             const clientHeight = dom[0].clientHeight;
             const scrollTop = dom[0].scrollTop;
             const scrollHeight = dom[0].scrollHeight;
-            if (clientHeight + scrollTop === scrollHeight) {
+            if (clientHeight + scrollTop >= scrollHeight - 50) {
                 console.log('竖向滚动条已经滚动到底部');
                 document.getElementById('btnAgreement1').disabled = false;
             }
@@ -210,7 +210,7 @@
             const clientHeight = dom[1].clientHeight;
             const scrollTop = dom[1].scrollTop;
             const scrollHeight = dom[1].scrollHeight;
-            if (clientHeight + scrollTop === scrollHeight) {
+            if (clientHeight + scrollTop >= scrollHeight - 50) {
                 console.log('竖向滚动条已经滚动到底部');
                 document.getElementById('btnAgreement2').disabled = false;
             }
