@@ -11,13 +11,15 @@ use InvalidArgumentException;
 class HjhCloudService extends AbstractService {
     use Singleton;
 
-    public function create($userId, $image, $imageUrl, $format, $workflowId, $workflowName, $createTaskNo = "") {
+    public function create($userId, $image, $imageUrl, $format, $workflowId, $workflowName, $spaceName, $type, $createTaskNo = "") {
         try {
             $params = array(
                 "image_url" => $imageUrl,
                 "format" => $format,
                 "workflow_id" => $workflowId,
                 "workflow_name" => $workflowName,
+                "space_name" => $spaceName,
+                "type" => $type,
                 "create_task_no" => $createTaskNo,
                 "callback_url" => env("APP_URL") . "/api/hjh-callback",
             );
@@ -58,13 +60,15 @@ class HjhCloudService extends AbstractService {
         }
     }
 
-    public function createVideo($userId, $image, $imageUrl, $format, $workflowId, $workflowName, $createTaskNo = "") {
+    public function createVideo($userId, $image, $imageUrl, $format, $workflowId, $workflowName, $spaceName, $type, $createTaskNo = "") {
         try {
             $params = array(
                 "image_url" => $imageUrl,
                 "format" => $format,
                 "workflow_id" => $workflowId,
                 "workflow_name" => $workflowName,
+                "space_name" => $spaceName,
+                "type" => $type,
                 "create_task_no" => $createTaskNo,
                 "callback_url" => env("APP_URL") . "/api/hjh-callback",
             );

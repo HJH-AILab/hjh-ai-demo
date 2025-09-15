@@ -38,6 +38,18 @@
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-3">
+                                <input type="text" value="{{ $space_name }}" class="form-control" readonly id="space_name" name="space_name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-3">
+                                <input type="text" value="{{ $type }}" class="form-control" readonly id="type" name="type" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-3">
                                 <input type="file" class="form-control-file" id="chooseImage" name="thumb" required>
                                 @error('thumb')
                                 <span class="invalid-feedback" role="alert">

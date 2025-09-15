@@ -13,12 +13,12 @@
               <div class="box-content">
                   <span class="down" style="background-color: #f8f9fa;">
                     @if($workflow['type'] == 701)
-                    <a class="btn btn-outline-success" href="{{ route('workflow.image.upload1') }}?workflow_id={{ $workflow1['id'] }}&workflow_name={{ $workflow1['name'] }}" role="button">
+                    <a class="btn btn-outline-success" href="{{ route('workflow.image.upload1') }}?workflow_id={{ $workflow1['id'] }}&workflow_name={{ $workflow1['name'] }}&space_name={{ $workflow1['space_name'] }}&type=$workflow['type']" role="button">
                         开始AI视频
                         <span class="bi-arrow-up"></span>
                     </a>
                     @else
-                    <a class="btn btn-outline-success" href="{{ route('workflow.image.upload') }}?workflow_id={{ $workflow1['id'] }}&workflow_name={{ $workflow1['name'] }}" role="button">
+                    <a class="btn btn-outline-success" href="{{ route('workflow.image.upload') }}?workflow_id={{ $workflow1['id'] }}&workflow_name={{ $workflow1['name'] }}&space_name={{ $workflow1['space_name'] }}&type=$workflow['type']" role="button">
                         开始AI绘图
                         <span class="bi-arrow-up"></span>
                     </a>

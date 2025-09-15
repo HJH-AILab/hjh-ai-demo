@@ -7,6 +7,7 @@ use App\Http\Services\Draw\Task;
 use App\Http\Services\HjhCloudService;
 use App\Jobs\ProcessAdminJob;
 use App\Models\Image;
+use App\Models\Video;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Image as Intervention;
@@ -110,7 +111,13 @@ class Wsc extends Base {
 
     public function callbackImg($drawtask) {
         try {
-            $this->processImg($drawtask);
+            if($drawtask->type == 701) {
+                // 视频
+                $this->processVideo($drawtask);
+            } else {
+                // 图片
+                $this->processImg($drawtask);
+            }
         } catch (\Exception $e) {
             Log::error("DrawTask", array(
                 "message" => $e->getMessage(),
@@ -126,8 +133,32 @@ class Wsc extends Base {
     public function processData($drawtask, $data, $type = "checkTask") {
         if($data["code"] == 200) {
             if($data["data"]["task_status"] == Task::TASK_STATUS_FINISH) {
-                if(isset($data["data"]["videos"])) {
+                if($drawtask->type == 701) {
+                    $videos = $data["data"]["videos"];
+                    if(!empty($videos)) {
+                        $drawtask->images = implode(",", $videos);
 
+                        $drawtask->task_status = Task::TASK_STATUS_FINISH;
+                        $drawtask->save();
+
+                        if($type == "callback") {
+                            $common = [
+                                "action" => "callback_drawtask",
+                                "data" => array(
+                                    "task_no" => $drawtask->task_no,
+                                ),
+                            ];
+                            // 异步处理图片
+                            ProcessAdminJob::dispatch($common)
+                                ->onConnection('redis') // 指定连接
+                                ->onQueue('admin');
+                            Log::info("DrawTask", $common);
+                        } else {
+                            $this->processVideo($drawtask);
+                        }
+                    } else {
+                        $drawtask->task_status = Task::TASK_STATUS_FAIL;
+                    }
                 } else {
                     $images = $data["data"]["images"];
                     if(!empty($images)) {
@@ -203,6 +234,41 @@ class Wsc extends Base {
                 })->stream()->detach();
                 Storage::disk('local')->put('thumb640/' . $imageName, $resource640);
                 $model->thumb640 = 'thumb640/' . $imageName;
+                $model->desc = "好机绘AI绘图 - " . $drawtask->workflow_name;
+                $model->lens = "";
+                $model->size = "";
+                $model->resolution = "";
+                $model->aspect_ratio = "";
+                $model->keywords = "hjh,image,aigc";
+                $model->released = 1;
+                $model->user_id = $userId;
+                $model->type = Images::TYPE_AIGC; // AI生成
+                $model->source = Task::SOURCE_HJH; // 来源 1-好机绘
+                $model->workflow_id = $drawtask->workflow_id;
+                $model->workflow_name = $drawtask->workflow_name;
+                $model->save();
+            }
+        }
+    }
+
+    public function processVideo($drawtask) {
+        if($drawtask->task_status = Task::TASK_STATUS_FINISH) {
+            $model = new Video();
+            $images = explode(",", $drawtask->images);
+            foreach ($images as $image) {
+                $model = new Video();
+                Log::info("DrawTask", array(
+                    "image" => $image,
+                ));
+                $userId = $drawtask->user_id;
+                $file = file_get_contents($image);
+                $imageName = uniqid(date('YmdHis')) . "hjhai";
+                Storage::disk('local')->put('thumbs/' . $imageName, $file);
+                $model->thumb = 'thumbs/' . $imageName;
+                Log::info("DrawTask", array(
+                    "thumb" => $model->thumb,
+                ));
+                $model->url = $image;
                 $model->desc = "好机绘AI绘图 - " . $drawtask->workflow_name;
                 $model->lens = "";
                 $model->size = "";

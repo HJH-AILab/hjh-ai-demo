@@ -18,7 +18,7 @@ class HjhTaskService extends AbstractService {
             'task_no' => $this->get($params, 'create_task_no', 0),
             'workflow_id' => $this->get($params, 'workflow_id', 0),
             'workflow_name' => $this->get($params, 'workflow_name', ''),
-            'name' => $this->get($params, 'name', ''),
+            'name' => $this->get($params, 'space_name', ''),
             'type' => $this->get($params, 'type', ''),
             'order_id' => $this->get($params, 'order_id', 0),
             'user_parameter' => json_encode($params),

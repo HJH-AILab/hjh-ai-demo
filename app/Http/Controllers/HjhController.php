@@ -136,6 +136,8 @@ class HjhController extends Controller
                     Base::FORMAT_SQURE,
                     $request->get('workflow_id'),
                     $request->get('workflow_name'),
+                    $request->get('space_name'),
+                    $request->get('type'),
                     $createTaskNo
                 );
             } catch (\Exception $e) {
@@ -212,6 +214,8 @@ class HjhController extends Controller
                     Base::FORMAT_SQURE,
                     $request->get('workflow_id'),
                     $request->get('workflow_name'),
+                    $request->get('space_name'),
+                    $request->get('type'),
                     $createTaskNo
                 );
             } catch (\Exception $e) {
