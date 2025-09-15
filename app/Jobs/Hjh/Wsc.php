@@ -126,30 +126,34 @@ class Wsc extends Base {
     public function processData($drawtask, $data, $type = "checkTask") {
         if($data["code"] == 200) {
             if($data["data"]["task_status"] == Task::TASK_STATUS_FINISH) {
-                $images = $data["data"]["images"];
-                if(!empty($images)) {
-                    $drawtask->images = implode(",", $images);
+                if(isset($data["data"]["videos"])) {
 
-                    $drawtask->task_status = Task::TASK_STATUS_FINISH;
-                    $drawtask->save();
-
-                    if($type == "callback") {
-                        $common = [
-                            "action" => "callback_drawtask",
-                            "data" => array(
-                                "task_no" => $drawtask->task_no,
-                            ),
-                        ];
-                        // 三分钟
-                        ProcessAdminJob::dispatch($common)
-                            ->onConnection('redis') // 指定连接
-                            ->onQueue('admin');
-                        Log::info("DrawTask", $common);
-                    } else {
-                        $this->processImg($drawtask);
-                    }
                 } else {
-                    $drawtask->task_status = Task::TASK_STATUS_FAIL;
+                    $images = $data["data"]["images"];
+                    if(!empty($images)) {
+                        $drawtask->images = implode(",", $images);
+
+                        $drawtask->task_status = Task::TASK_STATUS_FINISH;
+                        $drawtask->save();
+
+                        if($type == "callback") {
+                            $common = [
+                                "action" => "callback_drawtask",
+                                "data" => array(
+                                    "task_no" => $drawtask->task_no,
+                                ),
+                            ];
+                            // 三分钟
+                            ProcessAdminJob::dispatch($common)
+                                ->onConnection('redis') // 指定连接
+                                ->onQueue('admin');
+                            Log::info("DrawTask", $common);
+                        } else {
+                            $this->processImg($drawtask);
+                        }
+                    } else {
+                        $drawtask->task_status = Task::TASK_STATUS_FAIL;
+                    }
                 }
             } else {
                 $drawtask->task_status = Task::TASK_STATUS_FAIL;
