@@ -16,7 +16,7 @@
 <div class="row">
   <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 offset-xl-2 offset-lg-2 offset-md-2 text-center" style="margin-top:20px;">
     <div class="box" style="background: #000;">
-      <video src="{{ $video->thumb }}" controls class="img-fluid" style="width:960px;" alt="{{ $video->desc }}" title="{{ $video->desc }}">
+      <video src="{{ $video->newthumb }}" controls class="img-fluid" style="width:960px;" alt="{{ $video->desc }}" title="{{ $video->desc }}">
     </div>
   </div>
 </div>
@@ -27,7 +27,7 @@
       <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12">
         <div class="box2">
           <a href="{{ route('video.show', ['id'=>$one->id]) }}">
-            <video src="{{ $one->thumb }}" class="img-fluid" alt="{{ $one->desc }}" title="{{ $one->desc }}" />
+            <video src="{{ $one->newthumb }}" class="img-fluid" alt="{{ $one->desc }}" title="{{ $one->desc }}" />
           </a>
         </div>
       </div>

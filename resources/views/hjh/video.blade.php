@@ -6,7 +6,7 @@
   <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-12 item">
     <div class="box">
       <a href="{{ route('video.show', ['id'=>$video->id]) }}">
-        <video src="{{ $video->thumb }}" class="img-fluid lazyload fit" />
+        <video src="{{ $video->newthumb }}" class="img-fluid lazyload fit" />
       </a>
       <div class="box-content">
         <span class="user">
