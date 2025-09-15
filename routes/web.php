@@ -35,6 +35,7 @@ Route::get('/hjh-workflowimage1/', 'HjhController@showWorkflowImageForm1')->name
 Route::post('/hjh-workflow/', 'HjhController@create')->name('workflow.create');
 Route::post('/hjh-workflow-video/', 'HjhController@createvideo')->name('workflow.createvideo');
 Route::get('/hjh-image/', 'HjhController@image')->name('hjh.image');
+Route::get('/hjh-video/', 'HjhController@video')->name('hjh.video');
 Route::post('/hjh-callback', 'HjhController@callback')->name('workflow.callback');
 
 Route::get('/image/', 'UserController@showImageForm')->name('image.request');

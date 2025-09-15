@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Image;
 use App\Models\Music;
+use App\Models\Video;
 use Illuminate\Support\Facades\Log;
 use Image as Intervention;
 use Storage;
@@ -109,6 +110,30 @@ class HjhController extends Controller
             [
                 'images' => $res,
                 'title' => '好机绘AI画廊'
+            ]
+        );
+    }
+
+    /**
+     * 图片列表页展示
+     * 
+     */
+    public function video()
+    {
+        $page = request('page');
+        if (!$page) {
+            $page = 1;
+        }
+        
+        $res = Video::orderBy('id', 'desc')
+            ->where('source', Task::SOURCE_HJH)
+            ->Released()->simplePaginate(24, ['*'], 'page', $page);
+        
+        return view(
+            'hjh.video',
+            [
+                'videos' => $res,
+                'title' => '好机绘AI视频'
             ]
         );
     }
