@@ -12,14 +12,17 @@
               <img src="{{ $workflow1['effect_thumbnail_image'] }}" data-src="{{ $workflow1['effect_thumbnail_image'] }}" class="img-fluid lazyload fit" alt="{{ $workflow1['name'] }}" title="{{ $workflow1['name'] }}"/>
               <div class="box-content">
                   <span class="down" style="background-color: #f8f9fa;">
+                    @if($workflow['type'] == 701)
                     <a class="btn btn-outline-success" href="{{ route('workflow.image.upload') }}?workflow_id={{ $workflow1['id'] }}&workflow_name={{ $workflow1['name'] }}" role="button">
-                        @if($workflow['type'] == 701)
                         开始AI视频
-                        @else
-                        开始AI修图
-                        @endif
                         <span class="bi-arrow-up"></span>
                     </a>
+                    @else
+                    <a class="btn btn-outline-success" href="{{ route('workflow.image.upload') }}?workflow_id={{ $workflow1['id'] }}&workflow_name={{ $workflow1['name'] }}" role="button">
+                        开始AI绘图
+                        <span class="bi-arrow-up"></span>
+                    </a>
+                    @endif
                   </span>
               </div>
             </div>
