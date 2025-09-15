@@ -16,7 +16,7 @@
 <div class="row">
   <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 offset-xl-2 offset-lg-2 offset-md-2 text-center" style="margin-top:20px;">
     <div class="box" style="background: #000;">
-      <video src="{{ $video->thumb }}" controls>
+      <video src="{{ $video->thumb }}" controls class="img-fluid" style="width:960px;" alt="{{ $video->desc }}" title="{{ $video->desc }}">
     </div>
   </div>
 </div>
