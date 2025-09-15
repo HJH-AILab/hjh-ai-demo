@@ -17,7 +17,7 @@
   <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 offset-xl-2 offset-lg-2 offset-md-2 text-center" style="margin-top:20px;">
     <div class="box" style="background: #000;">
       <a class="spotlight" href="{{ $video->thumb }}">
-        <video src="{{ $video->thumb }}" class="img-fluid" style="width:960px;" alt="{{ $video->desc }}" title="{{ $video->desc }}">
+        <video src="{{ $video->thumb }}" controls class="img-fluid" style="width:960px;" alt="{{ $video->desc }}" title="{{ $video->desc }}">
       </a>
     </div>
   </div>
