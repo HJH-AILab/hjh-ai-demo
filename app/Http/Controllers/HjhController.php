@@ -182,6 +182,82 @@ class HjhController extends Controller
     }
 
     /**
+     * 上传图片
+     * @return void
+     */
+    public function createvideo(Request $request)
+    {
+        $model = new Image();
+        $userId = Auth::user()->id;
+        $cacheKey = "hjhimage:create:" . $userId;
+        if (Redis::exists($cacheKey) && $userId != 1) {
+            return redirect()->back()->withMessage('1天内只允许创作一次');
+        }
+        if ($request->hasFile('thumb') && $request->file('thumb')->isValid()) {
+
+            $file = $request->file('thumb');
+            $model->thumb = $file->store('thumbs');
+            $imageName = uniqid(date('YmdHis')) . $file->getClientOriginalName();
+
+            $createTaskNo = $userId . date('YmdHis') . mt_rand(1000000, 9999999);
+            try {
+                HjhResService::getInstance()->imageReview(
+                    $file,
+                    $model->thumb
+                );
+                HjhCloudService::getInstance()->create(
+                    $userId,
+                    $file,
+                    $model->thumb,
+                    Base::FORMAT_SQURE,
+                    $request->get('workflow_id'),
+                    $request->get('workflow_name'),
+                    $createTaskNo
+                );
+            } catch (\Exception $e) {
+                return redirect()->back()->withMessage("好机绘云服务: " . $e->getMessage());
+            }
+            
+            //生成1920宽度图片
+            $resource1920 = Intervention::make($file)->resize(1920, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->stream()->detach();
+            Storage::disk('local')->put('thumb1920/' . $imageName, $resource1920);
+            $model->thumb1920 = 'thumb1920/' . $imageName;
+
+            //生成1280宽度图片
+            $resource1280 = Intervention::make($file)->resize(1280, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->stream()->detach();
+            Storage::disk('local')->put('thumb1280/' . $imageName, $resource1280);
+            $model->thumb1280 = 'thumb1280/' . $imageName;
+
+            //生成640宽度图片
+            $resource640 = Intervention::make($file)->resize(640, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->stream()->detach();
+            Storage::disk('local')->put('thumb640/' . $imageName, $resource640);
+            $model->thumb640 = 'thumb640/' . $imageName;
+        }
+        $model->desc = $request->get('desc');
+        $model->lens = $request->get('lens');
+        $model->size = $request->get('size');
+        $model->resolution = $request->get('resolution');
+        $model->aspect_ratio = $request->get('aspect_ratio');
+        $model->keywords = $request->get('keywords');
+        $model->released = 0;
+        $model->user_id = $userId;
+        $model->type = Images::TYPE_USER; // 用户上传
+        $model->source = Base::SOURCE_HJH; // 来源 1-好机绘
+        $model->workflow_id = $request->get('workflow_id', 0);
+        $model->workflow_name = $request->get('workflow_name', '');
+        $model->save();
+
+        Redis::setex($cacheKey, 86400, time());
+        return redirect()->back()->withMessage('图片上传成功,审核通过后展示');
+    }
+
+    /**
      * callback
      * {
 	    "task_no": "20250527175912870966",

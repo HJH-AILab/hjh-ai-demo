@@ -8,7 +8,7 @@
                 <div class="card-header">工作流图片上传</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('workflow.create') }}" class="was-validated" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('workflow.createvideo') }}" class="was-validated" enctype="multipart/form-data">
                         @csrf
                         @if(session('message'))
                         @if(stripos(session('message'), '成功') > 0)
