@@ -31,6 +31,7 @@ Route::post('/profile/', 'UserController@profile')->name('profile.update');
 
 Route::get('/hjh-workflow/', 'HjhController@showWorkflowForm')->name('workflow.request');
 Route::get('/hjh-workflowimage/', 'HjhController@showWorkflowImageForm')->name('workflow.image.upload');
+Route::get('/hjh-workflowimage1/', 'HjhController@showWorkflowImageForm1')->name('workflow.image.upload1');
 Route::post('/hjh-workflow/', 'HjhController@create')->name('workflow.create');
 Route::get('/hjh-image/', 'HjhController@image')->name('hjh.image');
 Route::post('/hjh-callback', 'HjhController@callback')->name('workflow.callback');
