@@ -13,7 +13,12 @@
               <div class="box-content">
                   <span class="down" style="background-color: #f8f9fa;">
                     <a class="btn btn-outline-success" href="{{ route('workflow.image.upload') }}?workflow_id={{ $workflow1['id'] }}&workflow_name={{ $workflow1['name'] }}" role="button">
-                        开始AI绘图<span class="bi-arrow-up"></span>
+                        @if($workflow['type'] == 701)
+                        开始AI视频
+                        @else
+                        开始AI修图
+                        @endif
+                        <span class="bi-arrow-up"></span>
                     </a>
                   </span>
               </div>
