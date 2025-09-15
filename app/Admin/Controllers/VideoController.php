@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Image;
+use App\Models\Video;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -79,7 +79,7 @@ class VideoController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Image);
+        $grid = new Grid(new Video);
 
         $grid->id('ID');
         $grid->column('thumb640')->image('https://tiangong2.wepromo.cn/', 150, 150);
@@ -112,7 +112,7 @@ class VideoController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(Image::findOrFail($id));
+        $show = new Show(Video::findOrFail($id));
 
         $show->id('ID');
         $show->lens('lens');
@@ -136,7 +136,7 @@ class VideoController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Image);
+        $form = new Form(new Video);
 
         //$form->display('ID');
         $form->text('desc', '图片说明');

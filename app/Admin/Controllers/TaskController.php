@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Image;
+use App\Models\HjhDrawTask;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -79,7 +79,7 @@ class TaskController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Image);
+        $grid = new Grid(new HjhDrawTask);
 
         $grid->id('ID');
         $grid->task_no('task_no');
@@ -99,7 +99,7 @@ class TaskController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(Image::findOrFail($id));
+        $show = new Show(HjhDrawTask::findOrFail($id));
 
         $show->id('ID');
         $show->task_no('task_no');
@@ -116,7 +116,7 @@ class TaskController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Image);
+        $form = new Form(new HjhDrawTask);
 
         //$form->display('ID');
         $form->text('task_no', 'task_no');
