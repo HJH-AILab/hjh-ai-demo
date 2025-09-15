@@ -12,48 +12,6 @@
       {{ $video->user->name }}
     </div>
   </div>
-  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
-    <button type="button" class="btn btn-danger" onclick="favorite('{{ $video->id }}')"><i class="bi-plus-circle"></i>&nbsp;加入收藏</button>
-    <div class="btn-group dropdown">
-      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-        免费下载
-      </button>
-      <form class="dropdown-menu dropdown-menu-right p-3 mt-0">
-        <label>选择大小</label>
-        <div class="dropdown-divider"></div>
-        <div class="form-group">
-          <div class="form-check">
-            <input type="radio" class="form-check-input" name="inlineRadioOptions" id="inlineRadio1" value="{{ $video->newthumb }}" checked>
-            <label class="form-check-label" for="inlineRadio1">
-              原始大小
-            </label>
-          </div>
-          <div class="dropdown-divider"></div>
-          <div class="form-check">
-            <input type="radio" class="form-check-input" name="inlineRadioOptions" id="inlineRadio2" value="{{ $video->newthumb1920 }}">
-            <label class="form-check-label" for="inlineRadio2">
-              1920px
-            </label>
-          </div>
-          <div class="dropdown-divider"></div>
-          <div class="form-check">
-            <input type="radio" class="form-check-input" name="inlineRadioOptions" id="inlineRadio3" value="{{ $video->newthumb1280 }}">
-            <label class="form-check-label" for="inlineRadio3">
-              1280px
-            </label>
-          </div>
-          <div class="dropdown-divider"></div>
-          <div class="form-check">
-            <input type="radio" class="form-check-input" name="inlineRadioOptions" id="inlineRadio4" value="{{ $video->newthumb640 }}">
-            <label class="form-check-label" for="inlineRadio4">
-              640px
-            </label>
-          </div>
-          <div class="dropdown-divider"></div>
-        </div>
-      </form>
-    </div>
-  </div>
 </div>
 <div class="row">
   <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 offset-xl-2 offset-lg-2 offset-md-2 text-center" style="margin-top:20px;">
