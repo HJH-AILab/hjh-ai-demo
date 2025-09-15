@@ -56,7 +56,7 @@ Route::get('/license/', 'PagesController@license')->name('image.license');
 Route::get('/play/', 'PagesController@play')->name('image.play');
 
 Route::get('/user/{id}', 'PagesController@user')->name('image.user');
-Route::get('/user/{id}', 'PagesController@user')->name('video.user');
+Route::get('/user1/{id}', 'PagesController@user1')->name('video.user');
 
 Route::get('/favorite', 'UserController@favorites')->name('image.favorite');
 
