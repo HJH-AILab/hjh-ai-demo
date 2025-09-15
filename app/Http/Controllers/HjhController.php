@@ -205,7 +205,7 @@ class HjhController extends Controller
                     $file,
                     $model->thumb
                 );
-                HjhCloudService::getInstance()->create(
+                HjhCloudService::getInstance()->createVideo(
                     $userId,
                     $file,
                     $model->thumb,

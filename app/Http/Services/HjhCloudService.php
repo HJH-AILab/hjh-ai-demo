@@ -58,6 +58,53 @@ class HjhCloudService extends AbstractService {
         }
     }
 
+    public function createVideo($userId, $image, $imageUrl, $format, $workflowId, $workflowName, $createTaskNo = "") {
+        try {
+            $params = array(
+                "image_url" => $imageUrl,
+                "format" => $format,
+                "workflow_id" => $workflowId,
+                "workflow_name" => $workflowName,
+                "create_task_no" => $createTaskNo,
+                "callback_url" => env("APP_URL") . "/api/hjh-callback",
+            );
+            HjhTaskService::getInstance()->create($userId, $params);
+            $base64 = HjhImageService::getImageBase64($image);
+            $params["image"] = $base64;
+            Log::info("hjhcloud", $params);
+            $token = $this->getToken();
+            $res = \App\Hjh\AI\Client::getCallbackHttp()->withHeaders([
+                'Authorization' => "Bearer $token",
+                ])
+                ->post(env("HJHCLOUD_URL") . "/api/openapi/task/createVideo", $params)->json();
+            Log::info("hjhcloud", array(
+                "params" => $params,
+                "res" => $res,
+            ));
+            if($res && $res["code"] == 200) {
+                $common = [
+                    "action" => "query_drawtask",
+                    "data" => array(
+                        "task_no" => $createTaskNo,
+                    ),
+                ];
+                // 三分钟
+                ProcessAdminJob::dispatch($common)
+                    ->onConnection('redis') // 指定连接
+                    ->onQueue('admin')
+                    ->delay(180);
+                $list = $res["data"];
+                return $list;
+            } else {
+                throw new InvalidArgumentException($res["message"]);
+            }
+        } catch(Exception $e) {
+            Log::error("hjhcloud", array($e->getMessage(), $e->getTraceAsString()));
+            Log::info("create fail", array($e->getMessage(), $e->getTraceAsString()));
+            throw $e;
+        }
+    }
+
     /**
      * "data": {
 		"task_no": "1_1202505281502238471504",
