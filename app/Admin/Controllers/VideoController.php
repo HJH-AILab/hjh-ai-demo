@@ -82,7 +82,7 @@ class VideoController extends Controller
         $grid = new Grid(new Video);
 
         $grid->id('ID');
-        $grid->column('thumb640')->image('https://tiangong2.wepromo.cn/', 150, 150);
+        $grid->column('thumb')->image('https://tiangong2.wepromo.cn/', 150, 150);
         $grid->desc('图片说明');
         $grid->keywords('标签');
         $states = [
