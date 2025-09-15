@@ -58,9 +58,13 @@ class HjhController extends Controller
         $data = $request->all();
         $workflowId = $data['workflow_id'] ?? '';
         $workflowName = $data['workflow_name'] ?? '';
+        $spaceName = $data['space_name'] ?? '';
+        $type = $data['type'] ?? '';
         return view('hjh.workflowimage', [
                 'workflow_id' => $workflowId,
                 'workflow_name' => $workflowName,
+                'space_name' => $spaceName,
+                'type' => $type,
                 'title' => '好机绘工作流图片'
             ]);
     }
@@ -74,9 +78,13 @@ class HjhController extends Controller
         $data = $request->all();
         $workflowId = $data['workflow_id'] ?? '';
         $workflowName = $data['workflow_name'] ?? '';
+        $spaceName = $data['space_name'] ?? '';
+        $type = $data['type'] ?? '';
         return view('hjh.workflowimage1', [
                 'workflow_id' => $workflowId,
                 'workflow_name' => $workflowName,
+                'space_name' => $spaceName,
+                'type' => $type,
                 'title' => '好机绘工作流图片'
             ]);
     }
