@@ -49,6 +49,7 @@ Route::get('/music/', 'UserController@showMusicForm')->name('music.request');
 Route::post('/music/', 'UserController@music')->name('music.update');
 
 Route::get('/photo/{id}', 'PagesController@show')->name('image.show');
+Route::get('/video/{id}', 'PagesController@show1')->name('video.show');
 
 Route::get('/license/', 'PagesController@license')->name('image.license');
 

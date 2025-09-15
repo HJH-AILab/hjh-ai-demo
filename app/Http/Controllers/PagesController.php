@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\User;
 use App\Models\Music;
+use App\Models\Video;
 use Illuminate\Support\Facades\Redis;
 use Elasticsearch\Client;
 
@@ -145,6 +146,40 @@ class PagesController extends Controller
             'pages.show',
             [
                 'image' => $res,
+                'more' => $more
+            ]
+        );
+    }
+
+    /**
+     * 详细图片页面展示
+     * 
+     */
+    public function show1($id)
+    {
+        Video::findOrFail($id)->increment('views');
+        $cacheKey = "videos:show:" . $id;
+        if (Redis::exists($cacheKey)) {
+            $res = Redis::get($cacheKey);
+            $res = unserialize($res);
+        } else {
+            $res = Video::findOrFail($id);
+            Redis::setex($cacheKey, 3600 * mt_rand(1, 24), serialize($res));
+        }
+
+        $cacheUserKey = "videos:morelist:" . $id;
+        if (Redis::exists($cacheUserKey)) {
+            $more = Redis::get($cacheUserKey);
+            $more = unserialize($more);
+        } else {
+            $more = Video::inRandomOrder()->Released()->limit(12)->get();
+            Redis::setex($cacheUserKey, 3600 * mt_rand(1, 24), serialize($more));
+        }
+
+        return view(
+            'pages.show1',
+            [
+                'video' => $res,
                 'more' => $more
             ]
         );
