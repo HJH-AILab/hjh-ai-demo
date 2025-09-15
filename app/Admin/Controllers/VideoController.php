@@ -122,6 +122,7 @@ class VideoController extends Controller
         $show->colour('colour');
         $show->user_id('user_id');
         $show->thumb('thumb');
+        $show->url('url');
         $show->created_at(trans('admin.created_at'));
         $show->updated_at(trans('admin.updated_at'));
 
